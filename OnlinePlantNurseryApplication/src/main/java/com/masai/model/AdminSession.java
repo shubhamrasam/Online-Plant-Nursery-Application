@@ -18,7 +18,7 @@ public class AdminSession {
 
 	@Id
 	@Column(unique=true)
-	private Integer aid;
+	private Integer adminId;
 	private String uuid;
 	private LocalDateTime localDateTime;
 	
