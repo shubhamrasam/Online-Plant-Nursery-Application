@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.masai.exception.LoginException;
 import com.masai.model.CustomerLoginDTO;
 import com.masai.service.CustomerLoginService;
 @RestController
@@ -20,12 +19,12 @@ public class CustomerLoginController {
 	private CustomerLoginService loginService;
 	@PreAuthorize("hasRole('NORMAL')")
 	@PostMapping("/login")
-	public ResponseEntity<String> logInHandler(@RequestBody CustomerLoginDTO dto) throws LoginException{
+	public ResponseEntity<String> logInHandler(@RequestBody CustomerLoginDTO dto) {
 		return new ResponseEntity<>(loginService.logIntoAccount(dto),HttpStatus.ACCEPTED);
 	}
 	@PreAuthorize("hasRole('NORMAL')")
 	@PostMapping("/logout")
-	public ResponseEntity<String> logoutInHandler(@RequestParam(required = false) String key) throws LoginException{
+	public ResponseEntity<String> logoutInHandler(@RequestParam(required = false) String key) {
 		return new ResponseEntity<>(loginService.logOutAccount(key),HttpStatus.OK);
 	}
 

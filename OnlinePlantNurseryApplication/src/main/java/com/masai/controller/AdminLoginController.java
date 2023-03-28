@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.masai.exception.LoginException;
 import com.masai.model.AdminLoginDTO;
 import com.masai.service.AdminLoginService;
 
@@ -21,12 +20,12 @@ public class AdminLoginController {
 	private AdminLoginService loginService;
 	 @PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/login")
-	public ResponseEntity<String> logInHandler(@RequestBody AdminLoginDTO dto) throws LoginException{
+	public ResponseEntity<String> logInHandler(@RequestBody AdminLoginDTO dto) {
 		return new ResponseEntity<>(loginService.logIntoAccount(dto),HttpStatus.ACCEPTED);
 	}
 	 @PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/logout")
-	public ResponseEntity<String> logoutInHandler(@RequestParam(required = false) String key) throws LoginException{
+	public ResponseEntity<String> logoutInHandler(@RequestParam(required = false) String key) {
 		return new ResponseEntity<>(loginService.logOutAccount(key),HttpStatus.OK);
 	}
 
