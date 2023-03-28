@@ -14,15 +14,10 @@ import lombok.Data;
 
 @Data
 
-public abstract class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userId;
+public abstract class User {	
 	
 	@NotNull(message = "user name Should not be null")
-	private String userName;
-	
+	private String userName;	
 	
 	@Email
 	@NotNull(message = "user Email Should not be null")
