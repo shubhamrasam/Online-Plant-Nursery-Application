@@ -24,6 +24,6 @@ public class Orders {
 	private Integer quantity;
 	private Double totalCost;
 	
-	private Planter planter;
+	//private Planter planter;
 	
 }

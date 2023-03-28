@@ -1,6 +1,10 @@
 
 package com.masai.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,17 +12,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Planter {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer planterid; 
-	private float planterheight;
+	private Integer planterheight;
 	private Integer planterCapacity;
 	private Integer drinageHoles;
 	private Integer planterColor;
 	private String planterShape;
 	private Integer planterStock;
 	private Integer planterCost;
-	private Plant Plant;
-	private Seed Seed;
+//	@OneToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER )
+//	private Plant Plant;
+//	@OneToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER )
+//	private Seed Seed;
 	
 }

@@ -1,7 +1,12 @@
 package com.masai.repository;
 
-public interface CustomerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.masai.model.Customer;
+
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	// ashish kumar
+	public Customer findByCustomerMobileNumber(String adminMobileNo);
 	
 }

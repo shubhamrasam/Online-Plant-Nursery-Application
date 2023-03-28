@@ -17,7 +17,7 @@ public class CustomerSession {
 
 	@Id
 	@Column(unique=true)
-	private Integer cid;
+	private Integer customerId;
 	private String uuid;
 	private LocalDateTime localDateTime;
 	

@@ -1,7 +1,11 @@
 package com.masai.repository;
 
-public interface AdminRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
-	// ashish kumar
+import com.masai.model.Admin;
+
+public interface AdminRepository extends JpaRepository<Admin, Integer> {
+
+	public Admin findByAdminMobileNumber(String adminMobileNo);
 	
 }
