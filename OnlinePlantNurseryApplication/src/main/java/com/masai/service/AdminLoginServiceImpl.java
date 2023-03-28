@@ -28,7 +28,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	public String logIntoAccount(AdminLoginDTO dto) throws LoginException {
 	   Admin existingAdmin=adminrepo.findByAdminMobileNumber(dto.getAdminMobileNumber());
 	   if(existingAdmin==null) throw new LoginException("please Enter valid mobile no");
-	   Optional<Admin> validsession=adminrepo.findById(existingAdmin.getAdminId());
+	   Optional<AdminSession> validsession= adminsessionRepo.findById(existingAdmin.getAdminId());
 	   if(validsession.isPresent()) {
 		   System.out.println(validsession);
 		   throw new LoginException("Admin Already Login with this no"); 

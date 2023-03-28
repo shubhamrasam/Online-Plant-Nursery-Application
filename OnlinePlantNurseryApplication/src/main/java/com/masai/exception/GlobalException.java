@@ -37,8 +37,8 @@ public class GlobalException {
 
 	}
 
-	@ExceptionHandler(CustomerNotFound.class)
-	public ResponseEntity<MyErrorDetails> myCustomerExceptionHandler(CustomerNotFound ee, WebRequest req) {
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<MyErrorDetails> myCustomerExceptionHandler(CustomerException ee, WebRequest req) {
 
 		MyErrorDetails err = new MyErrorDetails();
 		err.setTimeStamp(LocalDateTime.now());
