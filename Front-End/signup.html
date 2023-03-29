@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OPN SighUp</title>
+    <link rel="stylesheet" href="./css/signup.css" />
+  </head>
+  <body>
+    <h2>User Sign Up Form</h2>
+
+    <form>
+      <label for="name">UserName:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="mobile">Admin Mobile:</label>
+      <input
+        type="tel"
+        id="mobile"
+        name="mobile"
+        pattern="[0-9]{10}"
+        required
+      />
+
+      <label for="password">Admin Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        minlength="6"
+        required
+      />
+      <label for="email">User Email:</label>
+      <input type="email" id="email" name="email" required />
+      <input type="submit" value="Sign Up" />
+    </form>
+  </body>
+</html>
+<script src="./js/signup.js"></script>
