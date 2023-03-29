@@ -19,15 +19,14 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public Orders addOrder(Orders order) throws OrderException {
 		
-		Orders orderObject = ordersRepository.save(order);
+		Optional<Orders> optOrder = ordersRepository.findById(order.getBookingOrderId());
 		
-		if(orderObject == null) {
+		if(optOrder.isEmpty()) {
 			
-			throw new OrderException("Order is not added");
-			
+			return ordersRepository.save(order);
 		}
 		
-		return orderObject;
+		throw new OrderException("Order already present with id: "+order.getBookingOrderId());
 		
 	}
 
@@ -38,29 +37,56 @@ public class OrdersServiceImpl implements OrdersService{
 		
 		if(orderOpt.isEmpty()) {
 			
-			throw new OrderException("");
+			throw new OrderException("Order is not present with id: "+order.getBookingOrderId());
 			
 		}
 		
-		return null;
+		return ordersRepository.save(order);
 	}
 
 	@Override
 	public Orders deleteOrder(Integer orderId) throws OrderException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Optional<Orders> orderOpt =  ordersRepository.findById(orderId);
+		
+		if(orderOpt.isEmpty()) {
+			
+			throw new OrderException("Order is not present with id: "+orderId);
+			
+		}
+		
+		ordersRepository.delete(orderOpt.get());
+		
+		return orderOpt.get();
 	}
 
 	@Override
 	public Orders viewOrder(Integer orderId) throws OrderException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Optional<Orders> orderOpt =  ordersRepository.findById(orderId);
+		
+		if(orderOpt.isEmpty()) {
+			
+			throw new OrderException("Order is not present with id: "+orderId);
+			
+		}
+		
+		return orderOpt.get();
+		
 	}
 
 	@Override
 	public List<Orders> viewAllOrders() throws OrderException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Orders> orders = ordersRepository.findAll();
+		
+		if(orders.isEmpty()) {
+			
+			throw new OrderException("No Order is present");
+			
+		}
+		
+		return orders;
 	}
 
 	
