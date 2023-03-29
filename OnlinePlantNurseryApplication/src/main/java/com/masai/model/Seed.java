@@ -1,9 +1,21 @@
 package com.masai.model;
 
+import org.hibernate.validator.constraints.UniqueElements;
 
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Seed {
 
 	private Integer seedid;  
+	
+	@UniqueElements
 	private String commonName;
 	private String bloomTime; 
 	private String watering;
