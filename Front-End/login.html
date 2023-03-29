@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <title>OPN Login</title>
+  </head>
+  <body>
+    <h2>User Login Form</h2>
+
+    <form>
+      <label for="mobile">Mobile:</label>
+      <input
+        type="tel"
+        id="mobile"
+        name="mobile"
+        pattern="[0-9]{10}"
+        required
+      />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        minlength="8"
+        required
+      />
+
+      <input type="submit" value="Login" />
+    </form>
+  </body>
+</html>
+<script src="./js/login.js"></script>
