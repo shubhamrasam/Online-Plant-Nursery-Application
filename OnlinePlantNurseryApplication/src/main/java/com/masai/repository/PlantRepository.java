@@ -1,6 +1,10 @@
 package com.masai.repository;
 
-public interface PlantRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.masai.model.Plant;
+
+public interface PlantRepository extends JpaRepository<Plant, Integer> {
 
 	// ayaz khan
 	
