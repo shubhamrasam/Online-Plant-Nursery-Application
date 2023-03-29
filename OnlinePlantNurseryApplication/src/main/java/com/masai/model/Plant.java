@@ -1,9 +1,13 @@
 package com.masai.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Plant {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer plantId;
@@ -26,7 +31,9 @@ public class Plant {
 	private String plantDescription;
 	private Integer plantStock;
 	private Double plantCost;
-//	@OneToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER ,mappedBy = "plant")
-//	private Planter planter;
+    
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JsonIgnore
+	private Planter planter;
 	
 }
