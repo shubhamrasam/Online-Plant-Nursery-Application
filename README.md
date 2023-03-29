@@ -21,8 +21,8 @@
 <p>4. Customer Management <p/>
 <h1>Customer Function</h1>
 <h4>Customer will be Able to do following function</h4>
-<p>1. Customer should be able to view the list of Plants , Seeds , Planters. <p/>
-<p>2. Customer should be able to buy order desired plants, seeds, planters .<p/>
+<p>1. Customer will be able to view the list of Plants , Seeds , Planters. <p/>
+<p>2. Customer will be able to buy order desired plants, seeds, planters .<p/>
 <h1>Tech Stack Used</h1>
 <p>1. JAVA <p/>
 <p>2. Spring Framework<p/>
