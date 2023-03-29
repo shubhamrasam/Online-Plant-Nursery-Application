@@ -11,9 +11,9 @@ public interface SeedService {
 	
 	public Seed updateSeed(Seed seed) throws SeedException;
 	
-	public Seed deleteSeed(Seed seed) throws SeedException;
+	public Seed deleteSeed(Integer seedId) throws SeedException;
 	
-	public Seed viewSeed(Seed seed) throws SeedException;
+	public Seed viewSeed(Integer seedId) throws SeedException;
 	
 	public Seed viewSeed(String commonName) throws SeedException;
 	

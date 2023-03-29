@@ -82,7 +82,7 @@ public class OrdersServiceImpl implements OrdersService{
 		
 		if(orders.isEmpty()) {
 			
-			throw new OrderException("No Order is present");
+			throw new OrderException("Orders are not present");
 			
 		}
 		
