@@ -37,6 +37,7 @@
 <p>1. Subham Rasam <p/>
 <p>2. Azaz Khan<p/>
 <p>3. Ashish Kumar<p/>
+<p>4. Deepak Kumar<p/>
 
 <h1>Installation And Run</h1>
 <p>Before Running The Api Server You Should  Update the database config Inside The Application.properies file</p>
