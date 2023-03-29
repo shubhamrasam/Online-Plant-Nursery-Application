@@ -37,6 +37,7 @@
 <p>1. Subham Rasam <p/>
 <p>2. Azaz Khan<p/>
 <p>3. Ashish Kumar<p/>
+<p>4. Deepak Kumar<p/>
 
 <h1>Installation And Run</h1>
 <p>Before Running The Api Server You Should  Update the database config Inside The Application.properies file</p>
@@ -54,6 +55,9 @@
 <p>http://localhost:8088/swagger-ui/index.html</p>
 
 <h1>ERR daigram</h1>
+
+
+<img src="https://user-images.githubusercontent.com/87129673/228530673-82f8c904-e824-4b3a-af12-137f103226d6.png" alt="">
 
 <h1>Flow Chart-Diagram</h1>
 
