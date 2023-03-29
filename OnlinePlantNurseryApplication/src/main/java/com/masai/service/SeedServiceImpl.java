@@ -23,7 +23,7 @@ public class SeedServiceImpl implements SeedService{
 		
 //	    Optional<Seed> optSeed = ordersRepository.findById(seed.get);
 		
-		if(optSeed.isEmpty()) {
+//		if(optSeed.isEmpty()) {
 			
 //			return ordersRepository.save(seed);
 		}
