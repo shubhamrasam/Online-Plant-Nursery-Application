@@ -53,7 +53,7 @@
 <p>http://localhost:8088/</p>
 <p>http://localhost:8088/swagger-ui/index.html</p>
 
-<h1>ER daigram</h1>
+<h1>ERR daigram</h1>
 
-<h1>Flow Chart</h1>
+<h1>Flow Chart-Diagram</h1>
 
