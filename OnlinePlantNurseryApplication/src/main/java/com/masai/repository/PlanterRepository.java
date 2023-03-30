@@ -13,8 +13,10 @@ public interface PlanterRepository extends JpaRepository<Planter, Integer> {
 
 	// ayaz khan
 
+
 	public Planter findByPlanterShape(String planterShape);
 	public List<Planter> findByPlanterCostBetween(double minCost, double maxCost);
+
 
 	
 }
