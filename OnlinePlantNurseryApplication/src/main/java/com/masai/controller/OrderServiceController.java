@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.LoginException;
@@ -26,43 +27,129 @@ public class OrderServiceController {
 	@Autowired
 	private OrdersService ordersService;
 
-	@PostMapping("/")
-	public ResponseEntity<Orders> addOrder(@RequestBody Orders order, String key) throws OrderException, LoginException{
+	@PostMapping("/add")
+	public ResponseEntity<?> addOrder(@RequestBody Orders order ,@RequestParam String key){
 		
-		Orders newOrder = ordersService.addOrder(order, key);
+		try {
+			
+			Orders newOrder = ordersService.addOrder(order,key);
+			
+			return new ResponseEntity<Orders>(newOrder,HttpStatus.CREATED);
+			
+		}catch(OrderException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+			
+		}catch(LoginException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNAUTHORIZED);
+			
+		}catch(Exception e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
 		
-		return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/")
-	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order, String key) throws OrderException, LoginException{
+	@PutMapping("/update")
+	public ResponseEntity<?> updateOrder(@RequestBody Orders order ,@RequestParam String key){
 		
-		Orders updatedOrder = ordersService.updateOrder(order, key);
+		try {
+			
+			Orders updatedOrder = ordersService.updateOrder(order,key);
+			
+			return new ResponseEntity<Orders>(updatedOrder,HttpStatus.OK);
+			
+		}catch(OrderException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			
+		}catch(LoginException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNAUTHORIZED);
+			
+		}catch(Exception e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
 		
-		return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{orderId}")
-	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId, String key) throws OrderException, LoginException{
+	@DeleteMapping("/delete/{orderId}")
+	public ResponseEntity<?> deleteOrder(@PathVariable Integer orderId ,@RequestParam String key){
 		
-		Orders deletedOrder = ordersService.deleteOrder(orderId, key);
+		try {
+			
+			Orders deletedOrder = ordersService.deleteOrder(orderId,key);
+			
+			return new ResponseEntity<Orders>(deletedOrder,HttpStatus.OK);
+			
+		}catch(OrderException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			
+		}catch(LoginException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNAUTHORIZED);
+			
+		}catch(Exception e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
 		
-		return new ResponseEntity<>(deletedOrder, HttpStatus.OK);
 	}
 
-	@GetMapping("/{orderId}")
-	public ResponseEntity<Orders> viewOrder(@PathVariable Integer orderId, String key) throws OrderException, LoginException{
+	@GetMapping("/view/{orderId}")
+	public ResponseEntity<?> viewOrder(@PathVariable Integer orderId ,@RequestParam String key){
 		
-		Orders order = ordersService.viewOrder(orderId, key);
+		try {
+			
+			Orders order = ordersService.viewOrder(orderId,key);
+			
+			return new ResponseEntity<Orders>(order,HttpStatus.OK);
+			
+		}catch(OrderException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			
+		}catch(LoginException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNAUTHORIZED);
+			
+		}catch(Exception e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
 		
-		return new ResponseEntity<>(order, HttpStatus.OK);
 	}
 
-	@GetMapping("/")
-	public ResponseEntity<List<Orders>> viewAllOrders() throws OrderException{
+	@GetMapping("/view/all")
+	public ResponseEntity<?> viewAllOrders(@RequestParam String key){
 		
-		List<Orders> orders = ordersService.viewAllOrders();
+		try {
+			
+			List<Orders> orders = ordersService.viewAllOrders(key);
+			
+			return new ResponseEntity<List<Orders>>(orders,HttpStatus.OK);
+			
+		}catch(OrderException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			
+		}catch(LoginException e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNAUTHORIZED);
+			
+		}catch(Exception e) {
+			
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
 		
-		return new ResponseEntity<>(orders, HttpStatus.OK);
 	}
+
 }

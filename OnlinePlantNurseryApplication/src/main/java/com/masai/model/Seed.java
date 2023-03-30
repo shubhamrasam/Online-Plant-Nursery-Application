@@ -24,7 +24,7 @@ public class Seed {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer seedid;  
 	
-	@UniqueElements
+	
 	private String commonName;
 	private String bloomTime; 
 	private String watering;
