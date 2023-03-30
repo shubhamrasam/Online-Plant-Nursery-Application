@@ -6,8 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.exception.LoginException;
 import com.masai.exception.PlanterException;
+import com.masai.model.AdminSession;
+import com.masai.model.CustomerSession;
 import com.masai.model.Planter;
+import com.masai.repository.AdminSessionRepository;
+import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.PlanterRepository;
 
 @Service
@@ -16,16 +21,28 @@ public class PlanterServiceImpl implements PlanterService{
 	@Autowired
 	PlanterRepository planterRepo;
 	
+	@Autowired
+	private AdminSessionRepository adminSessionRepository;
+	
+	@Autowired
+	private CustomerSessionRepository customerSessionRepository;
+	
 	@Override
-	public Planter addPlanter(Planter planter) {
+	public Planter addPlanter(Planter planter, String key) throws LoginException{
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
+        
 		Planter p1 = planterRepo.save(planter);
 		return p1;
 	}
 
 	@Override
-	public Planter updatePlanter(Planter planter) throws PlanterException {
+	public Planter updatePlanter(Planter planter, String key) throws PlanterException ,LoginException{
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
+        
 		Optional<Planter> p1 = planterRepo.findById(planter.getPlanterid());
 		if(p1.isEmpty()) throw new PlanterException("No Planter Found");
 		else {
@@ -50,8 +67,11 @@ public class PlanterServiceImpl implements PlanterService{
 	}
 
 	@Override
-	public Planter deletePlanter(Planter planter) throws PlanterException {
+	public Planter deletePlanter(Planter planter, String key) throws PlanterException,LoginException {
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
+        
 		Optional<Planter> p1 = planterRepo.findById(planter.getPlanterid());
 		if(p1.isEmpty()) throw new PlanterException("No Planter Found");
 		else {
@@ -63,8 +83,12 @@ public class PlanterServiceImpl implements PlanterService{
 	}
 
 	@Override
-	public Planter viewPlanter(int planterId) throws PlanterException {
+	public Planter viewPlanter(int planterId ,String key) throws PlanterException ,LoginException{
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		Optional<Planter> p1  = planterRepo.findById(planterId);
 		if(p1.isEmpty()) throw new PlanterException("No Planter Found with the given id");
 		else {
@@ -74,8 +98,12 @@ public class PlanterServiceImpl implements PlanterService{
 	}
 
 	@Override
-	public Planter viewPlanter(String planterShape) throws PlanterException {
+	public Planter viewPlanter(String planterShape, String key) throws PlanterException,LoginException {
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		Planter p1  = planterRepo.findByPlanterShape(planterShape);
 		if(p1 == null) throw new PlanterException("No Planter Found with the given planterShape");
 		else
@@ -83,8 +111,12 @@ public class PlanterServiceImpl implements PlanterService{
 	}
 
 	@Override
-	public List<Planter> viewAllPlanters() throws PlanterException {
+	public List<Planter> viewAllPlanters(String key) throws PlanterException,LoginException {
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		List<Planter> pl = planterRepo.findAll();
 		if(pl.isEmpty()) throw new PlanterException("No Planter Exist");
 		else
@@ -92,8 +124,12 @@ public class PlanterServiceImpl implements PlanterService{
 	}
 
 	@Override
-	public List<Planter> viewAllPlanters(double minCost, double maxCost) throws PlanterException {
+	public List<Planter> viewAllPlanters(double minCost, double maxCost, String key) throws PlanterException ,LoginException{
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		List<Planter> pl = planterRepo.findByPlanterCostBetween(minCost, maxCost);
 		if(pl.isEmpty()) throw new PlanterException("No Planter Exist witnin the given range");
 		else

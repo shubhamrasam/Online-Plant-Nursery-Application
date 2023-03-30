@@ -6,8 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.exception.LoginException;
 import com.masai.exception.PlantException;
+import com.masai.model.AdminSession;
+import com.masai.model.CustomerSession;
 import com.masai.model.Plant;
+import com.masai.repository.AdminSessionRepository;
+import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.PlantRepository;
 
 
@@ -16,16 +21,29 @@ public class PlantServiceImpl implements PlantService{
 	@Autowired
 	private PlantRepository plantrepo;
 
+	@Autowired
+	private AdminSessionRepository adminSessionRepository;
+	
+	@Autowired
+	private CustomerSessionRepository customerSessionRepository;
+	
+	
 	@Override
-	public Plant addPlant(Plant plant) {
+	public Plant addPlant(Plant plant,String key)throws LoginException {
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
+        
 		Plant p1 = plantrepo.save(plant);
 		return p1;
 	}
 
 	@Override
-	public Plant updatePlant(Plant plant) throws PlantException {
+	public Plant updatePlant(Plant plant,String key) throws PlantException,LoginException {
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
+        
 		Optional<Plant> p1 = plantrepo.findById(plant.getPlantId());
 		if(p1.isEmpty())throw new PlantException("Plant not fount");
 		else {
@@ -52,8 +70,11 @@ public class PlantServiceImpl implements PlantService{
 	}
 
 	@Override
-	public Plant deletePlant(Plant plant) throws PlantException {
+	public Plant deletePlant(Plant plant,String key) throws PlantException,LoginException {
 		// TODO Auto-generated method stub
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
+        
 		Optional<Plant> p1 = plantrepo.findById(plant.getPlantId());
 		if(p1.isEmpty())throw new PlantException("Plant not fount");
 		else {
@@ -65,7 +86,12 @@ public class PlantServiceImpl implements PlantService{
 	}
 
 	@Override
-	public Plant viewPlant(int plantId) throws PlantException {
+	public Plant viewPlant(int plantId,String key) throws PlantException,LoginException {
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		Optional<Plant> p1 = plantrepo.findById(plantId);
 		if(p1.isEmpty())throw new PlantException("Plant not fount");
 		else {
@@ -75,7 +101,12 @@ public class PlantServiceImpl implements PlantService{
 	}
 
 	@Override
-	public Plant viewPlant(String commonName) throws PlantException {
+	public Plant viewPlant(String commonName,String key) throws PlantException,LoginException {
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		Plant p1 = plantrepo.findByplantCommonName(commonName);
 		if(p1 == null)throw new PlantException("Plant not fount");
 		else {
@@ -84,7 +115,12 @@ public class PlantServiceImpl implements PlantService{
 	}
 
 	@Override
-	public List<Plant> viewAllPlants() throws PlantException {
+	public List<Plant> viewAllPlants(String key) throws PlantException ,LoginException{
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		// TODO Auto-generated method stub
 		List<Plant> pl = plantrepo.findAll();
 		if(pl.isEmpty()) throw new PlantException("No Plant Exist");
@@ -93,7 +129,12 @@ public class PlantServiceImpl implements PlantService{
 	}
 
 	@Override
-	public List<Plant> viewAllPlants(String typeOfPlant) throws PlantException {
+	public List<Plant> viewAllPlants(String typeOfPlant,String key) throws PlantException ,LoginException{
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
+        
 		List<Plant> pl = plantrepo.findBytypeOfPlant(typeOfPlant);
 		if(pl.isEmpty()) throw new PlantException("No Plant Exist");
 		else
