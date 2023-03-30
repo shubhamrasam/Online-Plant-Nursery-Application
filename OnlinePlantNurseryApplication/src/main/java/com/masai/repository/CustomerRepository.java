@@ -8,5 +8,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	// ashish kumar
 	public Customer findByCustomerMobileNumber(String adminMobileNo);
+
+	
 	
 }
