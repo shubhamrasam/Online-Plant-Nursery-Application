@@ -1,5 +1,6 @@
 package com.masai.exception;
 
+import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 
 import javax.security.auth.login.LoginException;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class GlobalException {
@@ -124,6 +127,15 @@ public class GlobalException {
 		err.setDetails(ee.getBindingResult().getFieldError().getDefaultMessage());
 		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
 
+	}
+	
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<MyErrorDetails> handleAccessDeniedException(AccessDeniedException ex, WebRequest req) {
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(ex.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
 	}
 
 }
