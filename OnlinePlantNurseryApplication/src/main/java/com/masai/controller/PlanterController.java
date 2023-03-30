@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.Planter;
@@ -23,44 +24,44 @@ public class PlanterController {
 	PlanterService planterservice;
 	
 	@PostMapping("/planters/add")
-	 public ResponseEntity<Planter> addPlanter(@RequestBody Planter planter) {
-		 Planter planter1 = planterservice.addPlanter(planter);
+	 public ResponseEntity<Planter> addPlanter(@RequestBody Planter planter,@RequestParam(name="key") String key) {
+		 Planter planter1 = planterservice.addPlanter(planter,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
 	@PutMapping("/planters/update")
-	 public ResponseEntity<Planter> updatePlanter(@RequestBody Planter planter) {
-		 Planter planter1 = planterservice.updatePlanter(planter);
+	 public ResponseEntity<Planter> updatePlanter(@RequestBody Planter planter,@RequestParam(name="key") String key) {
+		 Planter planter1 = planterservice.updatePlanter(planter,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
 	@DeleteMapping("/planter/delete")
-	 public ResponseEntity<Planter> deletePlanter(@RequestBody Planter planter) {
-		 Planter planter1 = planterservice.deletePlanter(planter);
+	 public ResponseEntity<Planter> deletePlanter(@RequestBody Planter planter,@RequestParam(name="key") String key) {
+		 Planter planter1 = planterservice.deletePlanter(planter,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/planters/getbyId/{planterId}")
-	 public ResponseEntity<Planter> viewPlanter(@PathVariable int planterId) {
-		 Planter planter1 = planterservice.viewPlanter(planterId);
+	 public ResponseEntity<Planter> viewPlanter(@PathVariable int planterId,@RequestParam(name="key") String key) {
+		 Planter planter1 = planterservice.viewPlanter(planterId,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/planters/getbyshape/{planterShape}")
-	 public ResponseEntity<Planter> viewPlanter(@PathVariable String planterShape) {
-		 Planter planter1 = planterservice.viewPlanter(planterShape);
+	 public ResponseEntity<Planter> viewPlanter(@PathVariable String planterShape,@RequestParam(name="key") String key) {
+		 Planter planter1 = planterservice.viewPlanter(planterShape,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/planters/getall")
-	 public ResponseEntity<List<Planter>>  viewAllPlanters(){
-		 List<Planter> planter1 = planterservice.viewAllPlanters();
+	 public ResponseEntity<List<Planter>>  viewAllPlanters(@RequestParam(name="key") String key){
+		 List<Planter> planter1 = planterservice.viewAllPlanters(key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
-	 @GetMapping("/planters/getbycostbetween/{minCost}/{maxCost}")
-	 public ResponseEntity<List<Planter>> viewAllPlanters(@PathVariable double minCost ,@PathVariable double maxCost){
-		 List<Planter> planter1 = planterservice.viewAllPlanters(minCost, maxCost);
+	 @GetMapping("/planters/getbycostbetween")
+	 public ResponseEntity<List<Planter>> viewAllPlanters(@RequestParam(name = "min") double minCost ,@RequestParam(name = "max") double maxCost, @RequestParam(name="key") String key){
+		 List<Planter> planter1 = planterservice.viewAllPlanters(minCost, maxCost,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 }

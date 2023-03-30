@@ -35,8 +35,9 @@ public class Orders {
 	@JoinColumn(name="pid")
 	private Planter planters;
 	
-	@ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
+	@JoinColumn(name = "cid")
 	private Customer customer;
 	
 }

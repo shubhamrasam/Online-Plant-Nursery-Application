@@ -22,34 +22,34 @@ import com.masai.service.CustomerService;
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("/customers")
-public class CustomerController {
+public class CustomerServiceController {
 
 	@Autowired
 	private CustomerService customerService;
 
 	@PostMapping
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws CustomerException {
-		Customer addedCustomer = customerService.addCustomer(customer, null);
+		Customer addedCustomer = customerService.addCustomer(customer);
 		return ResponseEntity.ok().body(addedCustomer);
 	}
 
-	@PutMapping("/{customerId}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable int customerId, @RequestBody Customer customer)
+	@PutMapping("/{customerId}/{key}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable int customerId,@PathVariable String key, @RequestBody Customer customer)
 			throws CustomerException {
 		customer.setCustomerId(customerId);
-		Customer updatedCustomer = customerService.updateCustomer(customer, null);
+		Customer updatedCustomer = customerService.updateCustomer(customerId,customer,key);
 		return ResponseEntity.ok().body(updatedCustomer);
 	}
 
-	@DeleteMapping("/{customerId}")
-	public ResponseEntity<Void> deleteCustomer(@PathVariable int customerId) throws CustomerException {
-		customerService.deleteCustomer(customerId, null);
+	@DeleteMapping("/{customerId}/{key}")
+	public ResponseEntity<String> deleteCustomer(@PathVariable int customerId,@PathVariable String key) throws CustomerException {
+		customerService.deleteCustomer(customerId, key);
 		return ResponseEntity.noContent().build();
 	}
 
-	@GetMapping("/{customerId}")
-	public ResponseEntity<Customer> viewCustomer(@PathVariable int customerId) throws CustomerException {
-		Customer customer = customerService.viewCustomer(customerId, null);
+	@GetMapping("/{customerId}/{key}")
+	public ResponseEntity<Customer> viewCustomer(@PathVariable int customerId,@PathVariable String key) throws CustomerException {
+		Customer customer = customerService.viewCustomer(customerId, key);
 		return ResponseEntity.ok().body(customer);
 	}
 
@@ -60,9 +60,9 @@ public class CustomerController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<Customer> validateCustomer(@RequestBody CustomerLoginDTO loginRequest)
+	public ResponseEntity<String> validateCustomer(@RequestBody CustomerLoginDTO loginRequest)
 			throws CustomerException {
-		Customer customer = customerService.validateCustomer(loginRequest.getCustomerMobileNumber(), loginRequest.getCustomerPassword());
+		String customer = customerService.validateCustomer(loginRequest.getCustomerMobileNumber(), loginRequest.getCustomerPassword());
 		return ResponseEntity.ok().body(customer);
 	}
 }
