@@ -29,7 +29,7 @@ function submit(event) {
     redirect: "follow",
   };
 
-  fetch(`${domain}/admins`, { mode: "no-cors" }, requestOptions)
+  fetch(`${domain}/admins`, requestOptions)
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
