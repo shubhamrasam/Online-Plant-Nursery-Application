@@ -38,8 +38,8 @@ public class PlanterServiceImpl implements PlanterService{
 			p2.setPlanterShape(planter.getPlanterShape());
 			p2.setPlanterStock(planter.getPlanterStock());
 			p2.setPlanterCost(planter.getPlanterCost());
-			p2.setPlant(planter.getPlant());
-			p2.setSeed(planter.getSeed());
+//			p2.setPlant(planter.getPlant());
+//			p2.setSeed(planter.getSeed());
 			
 			planterRepo.save(p2);
 			
@@ -76,7 +76,7 @@ public class PlanterServiceImpl implements PlanterService{
 	@Override
 	public Planter viewPlanter(String planterShape) throws PlanterException {
 		// TODO Auto-generated method stub
-		Planter p1  = planterRepo.findByplanterShape(planterShape);
+		Planter p1  = planterRepo.findByPlanterShape(planterShape);
 		if(p1 == null) throw new PlanterException("No Planter Found with the given planterShape");
 		else
 		return p1;
@@ -94,7 +94,7 @@ public class PlanterServiceImpl implements PlanterService{
 	@Override
 	public List<Planter> viewAllPlanters(double minCost, double maxCost) throws PlanterException {
 		// TODO Auto-generated method stub
-		List<Planter> pl = planterRepo.findByBetweenplanterCost(minCost, maxCost);
+		List<Planter> pl = planterRepo.findByPlanterCostBetween(minCost, maxCost);
 		if(pl.isEmpty()) throw new PlanterException("No Planter Exist witnin the given range");
 		else
 		return pl;

@@ -1,12 +1,15 @@
 
 package com.masai.model;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,9 +30,11 @@ public class Planter {
 	private String planterShape;
 	private Integer planterStock;
 	private Integer planterCost;
-	@OneToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER )
-	private Plant Plant;
-	@OneToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER )
-	private Seed Seed;
+    
+	@OneToMany(mappedBy="planter" , cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+	private List<Plant> plantList;
+
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.EAGER )
+	private List<Seed> seedList;
 	
 }
