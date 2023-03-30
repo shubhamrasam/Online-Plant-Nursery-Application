@@ -16,8 +16,7 @@ public interface OrdersService {
 	
 	public Orders viewOrder(Integer orderId,String key) throws OrderException,LoginException;
 	
-	//admin
-	public List<Orders> viewAllOrders() throws OrderException;
+	public List<Orders> viewAllOrders(String key) throws OrderException,LoginException;
 	
 	
 }

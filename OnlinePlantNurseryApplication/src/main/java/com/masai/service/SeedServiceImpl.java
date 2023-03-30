@@ -6,10 +6,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.exception.LoginException;
 import com.masai.exception.OrderException;
 import com.masai.exception.SeedException;
+import com.masai.model.AdminSession;
+import com.masai.model.CustomerSession;
 import com.masai.model.Orders;
 import com.masai.model.Seed;
+import com.masai.repository.AdminSessionRepository;
+import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.OrdersRepository;
 import com.masai.repository.SeedRepository;
 
@@ -19,8 +24,18 @@ public class SeedServiceImpl implements SeedService{
 	@Autowired
 	private SeedRepository seedRepository;
 	
+	@Autowired
+	private AdminSessionRepository adminSessionRepository;
+	
+	@Autowired
+	private CustomerSessionRepository customerSessionRepository;
+	
 	@Override
-	public Seed addSeed(Seed seed) throws SeedException {
+	public Seed addSeed(Seed seed, String key) throws SeedException,LoginException {
+		
+        AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
 		
 	    Optional<Seed> optSeed = seedRepository.findById(seed.getSeedid());
 		
@@ -30,11 +45,14 @@ public class SeedServiceImpl implements SeedService{
 		}
 		
 		throw new SeedException("Seed already present with id: "+seed.getSeedid());
-		
 	}
 
 	@Override
-	public Seed updateSeed(Seed seed) throws SeedException {
+	public Seed updateSeed(Seed seed, String key) throws SeedException,LoginException {
+		
+        AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
 		
 		Optional<Seed> optSeed = seedRepository.findById(seed.getSeedid());
 		
@@ -45,12 +63,14 @@ public class SeedServiceImpl implements SeedService{
 		}
 		
 		return seedRepository.save(seed);
-		
-	
 	}
 
 	@Override
-	public Seed deleteSeed(Integer seedId) throws SeedException {
+	public Seed deleteSeed(Integer seedId, String key) throws SeedException,LoginException {
+		
+        AdminSession adminSession = adminSessionRepository.findByUuid(key);
+        
+        if(adminSession == null) throw new LoginException("Key is not valid login again.");
 
 		Optional<Seed> optSeed =  seedRepository.findById(seedId);
 		
@@ -65,11 +85,16 @@ public class SeedServiceImpl implements SeedService{
 		Seed seed = optSeed.get();
 		
 		return seed;
-		
 	}
 
 	@Override
-	public Seed viewSeed(Integer seedId) throws SeedException {
+	public Seed viewSeed(Integer seedId, String key) throws SeedException,LoginException {
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+	        
+	    if(adminSession == null && customerSession == null) throw new LoginException("Key is not valid login again.");
 		
 		Optional<Seed> optSeed =  seedRepository.findById(seedId);
 		
@@ -78,12 +103,18 @@ public class SeedServiceImpl implements SeedService{
 			throw new SeedException("Seed is not present with id: "+seedId);
 			
 		}
-		
+
 		return optSeed.get();
 	}
 
 	@Override
-	public Seed viewSeed(String commonName) throws SeedException {
+	public Seed viewSeed(String commonName, String key) throws SeedException,LoginException {
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+	        
+	    if(adminSession == null && customerSession == null) throw new LoginException("Key is not valid login again.");
 		
 		Seed seed = seedRepository.findByCommonName(commonName);
 		
@@ -97,7 +128,13 @@ public class SeedServiceImpl implements SeedService{
 	}
 
 	@Override
-	public List<Seed> viewAllSeeds() throws SeedException {
+	public List<Seed> viewAllSeeds(String key) throws SeedException,LoginException {
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+	        
+	    if(adminSession == null && customerSession == null) throw new LoginException("Key is not valid login again.");
 		
 		List<Seed> seeds = seedRepository.findAll();
 		
@@ -111,7 +148,13 @@ public class SeedServiceImpl implements SeedService{
 	}
 
 	@Override
-	public List<Seed> viewAllSeeds(String typeOfSeed) throws SeedException {
+	public List<Seed> viewAllSeeds(String typeOfSeed, String key) throws SeedException,LoginException {
+		
+		AdminSession adminSession = adminSessionRepository.findByUuid(key);
+		
+		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+	        
+	    if(adminSession == null && customerSession == null) throw new LoginException("Key is not valid login again.");
 	    
 		List<Seed> seeds = seedRepository.findByTypeOfSeeds(typeOfSeed);
 		
