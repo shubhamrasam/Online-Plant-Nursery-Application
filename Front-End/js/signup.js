@@ -1,4 +1,4 @@
-let domain = "http://localhost:8088"; // local
+// let domain = "http://localhost:8088"; // local
 
 document.querySelector("form").addEventListener("submit", () => {
   submit(event);
@@ -29,7 +29,7 @@ function submit(event) {
     redirect: "follow",
   };
 
-  fetch(`${domain}/admins`, { mode: "no-cors" }, requestOptions)
+  fetch(`http://localhost:8088/admins`, { mode: "no-cors" }, requestOptions)
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
