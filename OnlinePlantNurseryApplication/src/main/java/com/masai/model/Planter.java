@@ -9,8 +9,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +34,7 @@ public class Planter {
 	@OneToMany(mappedBy="planter" , cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
 	private List<Plant> plantList;
 
-	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.EAGER )
+	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.EAGER )	
 	private List<Seed> seedList;
 	
 }
