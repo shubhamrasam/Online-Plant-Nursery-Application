@@ -29,48 +29,9 @@ function submit(event) {
     redirect: "follow",
   };
 
-  fetch(`${domain}/admins`, requestOptions)
+  fetch(`${domain}/admins`, { mode: "no-cors" }, requestOptions)
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
 }
 
-// loginUserButton.addEventListener("click", async function () {
-//   try {
-//     let res = await fetch(userLoginURL, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         username: loginUserUsername.value,
-//         password: loginUserPassword.value,
-//       })
-//     });
-//     let data = await res.json();
-//     console.log(data)
-//     localStorage.setItem("localAccessToken", data.accessToken);
-//     localStorage.setItem("userId", data.user.id);
-//     notificationWrapper.innerHTML = `
-//       <h5 class="notification info">
-//       hey ${loginUserUsername.value}, welcome back!
-//       </h5>
-//       `;
-//       getTodoButton.addEventListener("click", async function(){
-
-//         let res = await fetch(urlAllTodosOfUser ,{
-//             method:"GET",
-//             headers:{
-//              "Content-Type": "application/json",
-//              Authorization : `Bearer ${userAuthToken}`
-//             }
-//         })
-//         let data = await res.json()
-//         console.log(data)
-//         renderData(data)
-//      })
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
