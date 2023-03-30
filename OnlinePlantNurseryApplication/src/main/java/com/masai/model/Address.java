@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Address {
 
-	@NotNull
-	private Integer addressID;
 	
 	@NotNull
 	@Size(min=3 , max=4 ,message = "House Number should be in between three and four digit only")

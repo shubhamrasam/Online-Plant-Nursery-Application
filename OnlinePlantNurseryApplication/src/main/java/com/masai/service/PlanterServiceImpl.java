@@ -10,7 +10,9 @@ import com.masai.exception.LoginException;
 import com.masai.exception.PlanterException;
 import com.masai.model.AdminSession;
 import com.masai.model.CustomerSession;
+import com.masai.model.Plant;
 import com.masai.model.Planter;
+import com.masai.model.Seed;
 import com.masai.repository.AdminSessionRepository;
 import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.PlanterRepository;
@@ -32,7 +34,14 @@ public class PlanterServiceImpl implements PlanterService{
 		// TODO Auto-generated method stub
 		AdminSession adminSession = adminSessionRepository.findByUuid(key);
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
-        
+          List<Seed> seed=planter.getSeedList();
+         
+         List<Plant> plant=planter.getPlantList();
+         
+        	 planter.setPlantList(plant);
+        	 planter.setSeedList(seed);
+         
+          
 		Planter p1 = planterRepo.save(planter);
 		return p1;
 	}
