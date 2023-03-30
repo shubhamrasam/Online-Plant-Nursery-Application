@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@Configurable
+@Configurable
 public class OnlinePlantNurseryApplication {
 
 	public static void main(String[] args) {
