@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @SpringBootApplication
-//@Configurable
+@Configurable
 public class OnlinePlantNurseryApplication {
 
 	public static void main(String[] args) {
