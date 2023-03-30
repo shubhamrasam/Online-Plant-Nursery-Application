@@ -19,7 +19,7 @@ public class Plant {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer plantId;
+	private Integer  plantId;
 	private Integer plantHeight;
 	private String plantSpread;
 	private String plantCommonName;
