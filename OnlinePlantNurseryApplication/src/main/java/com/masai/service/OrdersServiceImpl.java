@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.masai.exception.LoginException;
 import com.masai.exception.OrderException;
+import com.masai.model.AdminSession;
+import com.masai.model.CustomerSession;
 import com.masai.model.Orders;
 import com.masai.repository.AdminSessionRepository;
+import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.OrdersRepository;
 
 @Service
@@ -21,9 +24,15 @@ public class OrdersServiceImpl implements OrdersService{
 	@Autowired
 	private AdminSessionRepository adminSessionRepository;
 	
+	@Autowired
+	private CustomerSessionRepository customerSessionRepository;
+	
 	@Override
 	public Orders addOrder(Orders order ,String key) throws OrderException , LoginException {
-
+		
+        CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+          
+        if(customerSession == null) throw new LoginException("Key is not valid login again.");
 		
 		Optional<Orders> optOrder = ordersRepository.findById(order.getBookingOrderId());
 		
@@ -39,6 +48,10 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public Orders updateOrder(Orders order ,String key) throws OrderException, LoginException {
 		
+        CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        
+        if(customerSession == null) throw new LoginException("Key is not valid login again.");
+		
 		Optional<Orders> orderOpt =  ordersRepository.findById(order.getBookingOrderId());
 		
 		if(orderOpt.isEmpty()) {
@@ -52,6 +65,10 @@ public class OrdersServiceImpl implements OrdersService{
 
 	@Override
 	public Orders deleteOrder(Integer orderId ,String key) throws OrderException , LoginException{
+		
+        CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        
+        if(customerSession == null) throw new LoginException("Key is not valid login again.");
 		
 		Optional<Orders> orderOpt =  ordersRepository.findById(orderId);
 		
@@ -69,6 +86,10 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public Orders viewOrder(Integer orderId ,String key) throws OrderException, LoginException {
 		
+        CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        
+        if(customerSession == null) throw new LoginException("Key is not valid login again.");
+		
 		Optional<Orders> orderOpt =  ordersRepository.findById(orderId);
 		
 		if(orderOpt.isEmpty()) {
@@ -82,7 +103,11 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 
 	@Override
-	public List<Orders> viewAllOrders() throws OrderException {
+	public List<Orders> viewAllOrders(String key) throws OrderException, LoginException {
+		
+        CustomerSession customerSession = customerSessionRepository.findByUuid(key);
+        
+        if(customerSession == null) throw new LoginException("Key is not valid login again.");
 		
 		List<Orders> orders = ordersRepository.findAll();
 		

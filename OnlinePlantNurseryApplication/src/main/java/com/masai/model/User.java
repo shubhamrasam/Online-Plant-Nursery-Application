@@ -13,7 +13,6 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-
 public abstract class User {	
 	
 	@NotNull(message = "user name Should not be null")
