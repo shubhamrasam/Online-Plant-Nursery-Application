@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 =======
 >>>>>>> a361a5ad1558859436d931f077d92d9251feb72d
 
+
 @SpringBootApplication
 @Configurable
 public class OnlinePlantNurseryApplication {

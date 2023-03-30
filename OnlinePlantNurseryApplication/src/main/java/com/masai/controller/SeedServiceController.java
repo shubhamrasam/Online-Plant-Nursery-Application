@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.LoginException;
@@ -21,98 +19,81 @@ import com.masai.exception.SeedException;
 import com.masai.model.Seed;
 import com.masai.service.SeedService;
 
-@RestController
-@RequestMapping("/seeds")
-public class SeedServiceController {
+	@RestController
+	@RequestMapping("/seeds")
+	public class SeedServiceController {
 
-	@Autowired
-	private SeedService seedService;
+	    @Autowired
+	    private SeedService seedService;
 
-	@PostMapping
-	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed, @RequestHeader("key") String key) {
-	    try {
-	        Seed newSeed = seedService.addSeed(seed, key);
-	        return ResponseEntity.status(HttpStatus.CREATED).body(newSeed);
-	    } catch (SeedException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	    } catch (LoginException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+	    @PostMapping("/{key}")
+	    public ResponseEntity<Seed> addSeed(@RequestBody Seed seed, @PathVariable("key") String key) {
+	        try {
+	            Seed savedSeed = seedService.addSeed(seed, key);
+	            return new ResponseEntity<>(savedSeed, HttpStatus.CREATED);
+	        } catch (SeedException | LoginException e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
 	    }
-	}
 
-	@PutMapping("/{seedId}")
-	public ResponseEntity<Seed> updateSeed(@PathVariable("seedId") Integer seedId, @RequestBody Seed seed,
-	        @RequestHeader("key") String key) {
-	    try {
-	        seed.setSeedid(seedId);
-	        Seed updatedSeed = seedService.updateSeed(seed, key);
-	        return ResponseEntity.ok(updatedSeed);
-	    } catch (SeedException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	    } catch (LoginException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+	    @PutMapping("/{key}")
+	    public ResponseEntity<Seed> updateSeed(@RequestBody Seed seed, @PathVariable("key") String key) {
+	        try {
+	            Seed updatedSeed = seedService.updateSeed(seed, key);
+	            return new ResponseEntity<>(updatedSeed, HttpStatus.OK);
+	        } catch (SeedException | LoginException e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
 	    }
-	}
 
-	@DeleteMapping("/{seedId}")
-	public ResponseEntity<Seed> deleteSeed(@PathVariable("seedId") Integer seedId, @RequestHeader("key") String key) {
-	    try {
-	        Seed deletedSeed = seedService.deleteSeed(seedId, key);
-	        return ResponseEntity.ok(deletedSeed);
-	    } catch (SeedException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	    } catch (LoginException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+	    @DeleteMapping("/{seedId}/{key}")
+	    public ResponseEntity<Seed> deleteSeed(@PathVariable("seedId") Integer seedId, @PathVariable("key") String key) {
+	        try {
+	            Seed deletedSeed = seedService.deleteSeed(seedId, key);
+	            return new ResponseEntity<>(deletedSeed, HttpStatus.OK);
+	        } catch (SeedException | LoginException e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
 	    }
-	}
 
-	@GetMapping("/{seedId}")
-	public ResponseEntity<Seed> viewSeed(@PathVariable("seedId") Integer seedId, @RequestHeader("key") String key) {
-	    try {
-	        Seed seed = seedService.viewSeed(seedId, key);
-	        return ResponseEntity.ok(seed);
-	    } catch (SeedException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	    } catch (LoginException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+	    @GetMapping("/{seedId}/{key}")
+	    public ResponseEntity<Seed> viewSeed(@PathVariable("seedId") Integer seedId, @PathVariable("key") String key) {
+	        try {
+	            Seed seed = seedService.viewSeed(seedId, key);
+	            return new ResponseEntity<>(seed, HttpStatus.OK);
+	        } catch (SeedException | LoginException e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
 	    }
-	}
 
-	@GetMapping(params = "commonName")
-	public ResponseEntity<Seed> viewSeedByCommonName(@RequestParam("commonName") String commonName,
-	        @RequestHeader("key") String key) {
-	    try {
-	        Seed seed = seedService.viewSeed(commonName, key);
-	        return ResponseEntity.ok(seed);
-	    } catch (SeedException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	    } catch (LoginException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+	    @GetMapping("/common-name/{commonName}/{key}")
+	    public ResponseEntity<Seed> viewSeed(@PathVariable("commonName") String commonName, @PathVariable("key") String key) {
+	        try {
+	            Seed seed = seedService.viewSeed(commonName, key);
+	            return new ResponseEntity<>(seed, HttpStatus.OK);
+	        } catch (SeedException | LoginException e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
 	    }
-	}
 
-	@GetMapping
-	public ResponseEntity<List<Seed>> viewAllSeeds(@RequestHeader("key") String key) {
-	    try {
-	        List<Seed> seeds = seedService.viewAllSeeds(key);
-	        return ResponseEntity.ok(seeds);
-	    } catch (SeedException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	    } catch (LoginException e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+	    @GetMapping("/{key}")
+	    public ResponseEntity<List<Seed>> viewAllSeeds(@PathVariable("key") String key) {
+	        try {
+	            List<Seed> seeds = seedService.viewAllSeeds(key);
+	            return new ResponseEntity<>(seeds, HttpStatus.OK);
+	        } catch (SeedException | LoginException e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
 	    }
-	}
 
-	@GetMapping(params = "typeOfSeed")
-	public ResponseEntity<List<Seed>> viewAllSeedsByType(@RequestParam("typeOfSeed") String typeOfSeed,
-	        @RequestHeader("key") String key) {
-	    try {
-	        List<Seed> seeds = seedService.viewAllSeeds(typeOfSeed, key);
-	        return ResponseEntity.ok(seeds);
-	    } catch (SeedException e) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	    } catch (LoginException e) {
-	    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-	    }
-	    }
+	    @GetMapping("/type-of-seed/{typeOfSeed}/{key}")
+	    public ResponseEntity<List<Seed>> viewAllSeeds(@PathVariable("typeOfSeed") String typeOfSeed, @PathVariable("key") String key) {
+	        try {
+	            List<Seed> seeds = seedService.viewAllSeeds(typeOfSeed, key);
+	            return new ResponseEntity<>(seeds, HttpStatus.OK);
+	        } catch (SeedException | LoginException e) {
+	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
+	        }
+
 }
