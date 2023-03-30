@@ -35,7 +35,7 @@
 
 <h1>Contributor</h1>
 <p>1. Subham Rasam <p/>
-<p>2. Azaz Khan<p/>
+<p>2. Ayaz Khan<p/>
 <p>3. Ashish Kumar<p/>
 <p>4. Deepak Kumar<p/>
 
