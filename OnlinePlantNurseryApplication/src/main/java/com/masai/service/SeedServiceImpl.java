@@ -7,15 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.LoginException;
-import com.masai.exception.OrderException;
 import com.masai.exception.SeedException;
 import com.masai.model.AdminSession;
 import com.masai.model.CustomerSession;
-import com.masai.model.Orders;
+import com.masai.model.Planter;
 import com.masai.model.Seed;
 import com.masai.repository.AdminSessionRepository;
 import com.masai.repository.CustomerSessionRepository;
-import com.masai.repository.OrdersRepository;
 import com.masai.repository.SeedRepository;
 
 @Service
@@ -38,10 +36,16 @@ public class SeedServiceImpl implements SeedService{
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
 		
 	    Optional<Seed> optSeed = seedRepository.findById(seed.getSeedid());
+	    
+	    
+	    
 		
-		if(optSeed.isEmpty()) {
+		if(optSeed.isPresent()) {
+			Seed s1=optSeed.get();
+			Planter p=s1.getPlanter();
+			s1.setPlanter(p);
+			return seedRepository.save(s1);
 			
-			return seedRepository.save(seed);
 		}
 		
 		throw new SeedException("Seed already present with id: "+seed.getSeedid());
