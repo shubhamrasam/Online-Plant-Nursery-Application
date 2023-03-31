@@ -1,0 +1,11 @@
+Double seedsCost1=84.0;
+Double seedsCost2=99.0;
+Double seedsCost3=56.0;
+Double seedsCost4=90.0;
+Double seedsCost5=85.0;
+Double seedsCost6=89.0;
+Double seedsCost7=69.0;
+Double seedsCost8=105.0;
+Double seedsCost9=72.0;
+Double seedsCost10=86.0;
+212121
