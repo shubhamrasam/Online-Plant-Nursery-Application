@@ -56,8 +56,7 @@
 
 <h1>ERR daigram</h1>
 
-
-<img src="https://user-images.githubusercontent.com/87129673/228530673-82f8c904-e824-4b3a-af12-137f103226d6.png" alt="">
+<img src="https://user-images.githubusercontent.com/87129673/229152944-69de8376-9de3-4391-a979-5973f047390c.png" alt="">
 
 <h1>Flow Chart-Diagram</h1>
 
