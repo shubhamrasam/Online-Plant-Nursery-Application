@@ -50,36 +50,5 @@ async function createAccount(obj) {
 }
 
 
-// function submit(event) {
-//   event.preventDefault();
-
-//   let myHeaders = new Headers();
-//   myHeaders.append("Content-Type", "application/json");
-
-// let userName = document.querySelector(".username");
-// let userEmail =  document.querySelector(".useremail");
-// let adminMobileNumber = document.querySelector(".mobile-number");
-// let adminPassword = document.querySelector(".password");
-
-//   let raw = JSON.stringify({
-//     adminMobileNumber: adminMobileNumber.value,
-//     userName: userName.value,
-//     adminPassword: adminPassword.value,
-//     userEmail: userEmail.value,
-//   });
-
-//   let requestOptions = {
-//     method: "GET",
-//     headers: myHeaders,
-//     body: raw,
-//     redirect: "follow",
-//   };
-
-//   fetch(`${domain}/admins`, { mode: "no-cors" }, requestOptions)
-//     .then((response) => response.text())
-//     .then((result) => console.log(result))
-//     .catch((error) => console.log("error", error));
-// }
-
 
 
