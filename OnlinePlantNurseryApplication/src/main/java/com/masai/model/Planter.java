@@ -34,7 +34,8 @@ public class Planter {
 	@OneToMany(mappedBy="planter" , cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
 	private List<Plant> plantList;
 
-	@OneToMany(cascade = CascadeType.ALL,fetch =FetchType.EAGER )	
+
+	@OneToMany(mappedBy="planter" ,cascade = CascadeType.ALL,fetch =FetchType.EAGER )
 	private List<Seed> seedList;
 	
 }
