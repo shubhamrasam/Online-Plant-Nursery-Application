@@ -24,45 +24,45 @@ public class SeedServiceController {
 	@Autowired
 	private SeedService seedService;
 
-	@PostMapping("/")
-	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed) throws SeedException {
-	    Seed addedSeed = seedService.addSeed(seed);
-	    return ResponseEntity.ok(addedSeed);
-	}
-
-	@PutMapping("/")
-	public ResponseEntity<Seed> updateSeed(@RequestBody Seed seed) throws SeedException {
-	    Seed updatedSeed = seedService.updateSeed(seed);
-	    return ResponseEntity.ok(updatedSeed);
-	}
-
-	@DeleteMapping("/{seedId}")
-	public ResponseEntity<Seed> deleteSeed(@PathVariable Integer seedId) throws SeedException {
-	    Seed deletedSeed = seedService.deleteSeed(seedId);
-	    return ResponseEntity.ok(deletedSeed);
-	}
-
-	@GetMapping("/{seedId}")
-	public ResponseEntity<Seed> viewSeed(@PathVariable Integer seedId) throws SeedException {
-	    Seed seed = seedService.viewSeed(seedId);
-	    return ResponseEntity.ok(seed);
-	}
-
-	@GetMapping("/name/{commonName}")
-	public ResponseEntity<Seed> viewSeedByName(@PathVariable String commonName) throws SeedException {
-	    Seed seed = seedService.viewSeed(commonName);
-	    return ResponseEntity.ok(seed);
-	}
-
-	@GetMapping("/")
-	public ResponseEntity<List<Seed>> viewAllSeeds() throws SeedException {
-	    List<Seed> seeds = seedService.viewAllSeeds();
-	    return ResponseEntity.ok(seeds);
-	}
-
-	@GetMapping("/type/{typeOfSeed}")
-	public ResponseEntity<List<Seed>> viewAllSeedsByType(@PathVariable String typeOfSeed) throws SeedException {
-	    List<Seed> seeds = seedService.viewAllSeeds(typeOfSeed);
-	    return ResponseEntity.ok(seeds);
-	}
+//	@PostMapping("/")
+//	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed) throws SeedException {
+//	    Seed addedSeed = seedService.addSeed(seed);
+//	    return ResponseEntity.ok(addedSeed);
+//	}
+//
+//	@PutMapping("/")
+//	public ResponseEntity<Seed> updateSeed(@RequestBody Seed seed) throws SeedException {
+//	    Seed updatedSeed = seedService.updateSeed(seed);
+//	    return ResponseEntity.ok(updatedSeed);
+//	}
+//
+//	@DeleteMapping("/{seedId}")
+//	public ResponseEntity<Seed> deleteSeed(@PathVariable Integer seedId) throws SeedException {
+//	    Seed deletedSeed = seedService.deleteSeed(seedId);
+//	    return ResponseEntity.ok(deletedSeed);
+//	}
+//
+//	@GetMapping("/{seedId}")
+//	public ResponseEntity<Seed> viewSeed(@PathVariable Integer seedId) throws SeedException {
+//	    Seed seed = seedService.viewSeed(seedId);
+//	    return ResponseEntity.ok(seed);
+//	}
+//
+//	@GetMapping("/name/{commonName}")
+//	public ResponseEntity<Seed> viewSeedByName(@PathVariable String commonName) throws SeedException {
+//	    Seed seed = seedService.viewSeed(commonName);
+//	    return ResponseEntity.ok(seed);
+//	}
+//
+//	@GetMapping("/")
+//	public ResponseEntity<List<Seed>> viewAllSeeds() throws SeedException {
+//	    List<Seed> seeds = seedService.viewAllSeeds();
+//	    return ResponseEntity.ok(seeds);
+//	}
+//
+//	@GetMapping("/type/{typeOfSeed}")
+//	public ResponseEntity<List<Seed>> viewAllSeedsByType(@PathVariable String typeOfSeed) throws SeedException {
+//	    List<Seed> seeds = seedService.viewAllSeeds(typeOfSeed);
+//	    return ResponseEntity.ok(seeds);
+//	}
 }
