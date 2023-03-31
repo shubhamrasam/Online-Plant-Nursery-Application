@@ -35,7 +35,7 @@ public class Seed {
 	private String url;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonIgnore
+	
 	private Planter planter;
 
 	public Seed(String commonName, String bloomTime, String watering, String difficultyLevel, String temparature,

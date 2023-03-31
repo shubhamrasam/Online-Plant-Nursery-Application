@@ -37,9 +37,13 @@ public class PlanterServiceImpl implements PlanterService{
           List<Seed> seed=planter.getSeedList();
          
          List<Plant> plant=planter.getPlantList();
-         
-        	 planter.setPlantList(plant);
-        	 planter.setSeedList(seed);
+         plant.forEach(e->{
+        	 planter.getPlantList().add(e);
+         });
+        	
+        	seed.forEach(e->{
+        		planter.getSeedList().add(e);
+        	});
          
           
 		Planter p1 = planterRepo.save(planter);
