@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.masai.model.Plant;
+import com.masai.model.Seed;
 import com.masai.repository.PlantRepository;
+import com.masai.repository.SeedRepository;
 
 
 @SpringBootApplication
@@ -275,6 +277,142 @@ public class OnlinePlantNurseryApplication {
 		};
 	}
 	
-	
+	@Bean
+	public CommandLineRunner addSeed(SeedRepository seedRepo) {
+		return args->{
+			Double seedsCost1=84.0;
+			Double seedsCost2=99.0;
+			Double seedsCost3=56.0;
+			Double seedsCost4=90.0;
+			Double seedsCost5=85.0;
+			Double seedsCost6=89.0;
+			Double seedsCost7=69.0;
+			Double seedsCost8=105.0;
+			Double seedsCost9=72.0;
+			Double seedsCost10=86.0;
+			String url1="https://user-images.githubusercontent.com/87129673/229087043-7c1caed0-8891-4a38-a4af-7b4195a36ff6.JPG";
+			String url2="https://user-images.githubusercontent.com/87129673/229087051-3ccfbd30-7728-4481-9c1f-702b516b7aa6.JPG";
+			String url3="https://user-images.githubusercontent.com/87129673/229087057-20eb8e85-5217-49d9-bc6b-bacd851db998.JPG";
+			String url4="https://user-images.githubusercontent.com/87129673/229087062-7b8e2a89-f55e-4c76-917f-17be7ccb9059.JPG";
+			String url5="https://user-images.githubusercontent.com/87129673/229087070-cc4740ad-860c-43e2-a265-7d226ceadcb1.JPG";
+			String url6="https://user-images.githubusercontent.com/87129673/229087077-9c03c6fb-1d96-4a36-aa1e-0822da9b6ef4.JPG";
+			String url7="https://user-images.githubusercontent.com/87129673/229087083-bf4e7dc4-3577-4fc2-8bd3-e658d90743ef.JPG";
+			String url8="https://user-images.githubusercontent.com/87129673/229087087-02f5fe8b-c8d7-4c59-81e7-30f602ece8df.JPG";
+			String url9="https://user-images.githubusercontent.com/87129673/229087093-5ef37726-1242-4958-836d-1e49857f8a81.JPG";
+			String url10="https://user-images.githubusercontent.com/87129673/229087097-97fbcf67-e26a-428a-9361-bc2977073b8f.JPG";
+			String url11="https://user-images.githubusercontent.com/87129673/229087098-7d266aac-2ce5-43b2-8470-5dd7cd9f11b3.JPG";
+			String url12="https://user-images.githubusercontent.com/87129673/229087104-a01e98f1-9d17-4743-875e-324ed4450380.JPG";
+			String url13="https://user-images.githubusercontent.com/87129673/229087110-91792923-2996-4e35-a468-929e2ceb581e.JPG";
+			String url14="https://user-images.githubusercontent.com/87129673/229087113-548aac37-306e-46cf-854c-ae64ccdb60a6.JPG";
+			String url15="https://user-images.githubusercontent.com/87129673/229087119-95e9c37d-1e54-4fc8-8f2b-476ccad8a9bd.JPG";
+			String url16="https://user-images.githubusercontent.com/87129673/229087124-19d99e80-8630-4563-bc07-009af5ed9190.JPG";
+			String url17="https://user-images.githubusercontent.com/87129673/229087125-573d070b-180f-4a82-ab2e-df5f9f6ba8f8.JPG";
+			String url18="https://user-images.githubusercontent.com/87129673/229087132-3422b962-5c80-4b82-b624-9d3b0e6c5da7.JPG";
+			String url19="https://user-images.githubusercontent.com/87129673/229087133-7b09abb5-985a-416b-b886-76c9113a26f8.JPG";
+			String url20="https://user-images.githubusercontent.com/87129673/229087137-00ed4415-e4fc-4fbf-9b93-f75e7378f5a1.JPG";
+			String url21="https://user-images.githubusercontent.com/87129673/229087141-8e0cbb6b-9263-4d90-92f1-3a9983bcbd0d.JPG";
+			String url22="https://user-images.githubusercontent.com/87129673/229087144-c50c0d59-6cbe-4780-b1cc-4abcde06c5ca.JPG";
+			String url23="https://user-images.githubusercontent.com/87129673/229087150-1e49319b-dd32-4d63-9359-71ac71616a81.JPG";
+			String url24="https://user-images.githubusercontent.com/87129673/229087154-b55725ac-939e-4aa5-be1b-eec615dedf8e.JPG";
+			String url25="https://user-images.githubusercontent.com/87129673/229087156-c5660471-bbfd-4d0b-81a8-1a6dac015564.JPG";
+			String url26="https://user-images.githubusercontent.com/87129673/229087163-e53946a8-2a85-49cf-b67a-81f081d21f64.JPG";
+			String url27="https://user-images.githubusercontent.com/87129673/229087164-fa18b6f7-b5cc-468d-aa54-9edd4f5a567e.JPG";
+			String url28="https://user-images.githubusercontent.com/87129673/229087169-4c1edf70-13f8-4a67-8d59-1ac66fde79e5.JPG";
+			String url29="https://user-images.githubusercontent.com/87129673/229087173-5621e335-7720-4f92-b555-50be78c70526.JPG";
+			String url30="https://user-images.githubusercontent.com/87129673/229087175-cd577a4d-f12f-481a-9289-ab9301ebae20.JPG";
+			String commonName1="500-mg-green-chilli-seeds";
+			String commonName2="600-mg-tomato-seeds";
+			String commonName3="1000-seeds-italian-basil-seeds";
+			String commonName4="broccoli-seeds";
+			String commonName5="celery-3500-seeds";
+			String commonName6="cherry-tomatoes-seeds-yellow";
+			String commonName7="cherry-tomato-seeds";
+			String commonName8="chrysanthemum-mix-seeds";
+			String commonName9="drumstick-seeds-moringa";
+			String commonName10="kale-seeds";
+			String commonName11="marigold-french-seeds";
+			String commonName12="oregano-seeds";
+			String commonName13="pak-choi-seed";
+			String commonName14="portulaca-mix-seeds";
+			String commonName15="red-capsicum-seeds";
+			String commonName16="sunflower-sungold-seeds";
+			String commonName17="thai-basil-1000-seeds";
+			String commonName18="thyme-seeds";
+			String commonName19="vinca-seeds";
+			String commonName20="zinnia-lilliput-mix-seeds";
+			String commonName21="arugula-seeds-rocket-leaves";
+			String commonName22="1-2-gm-green-cucumber-seeds-long";
+			String commonName23="1-5-gm-ipomoea-morning-glory-seeds";
+			String commonName24="1-gm-aster-mix-seeds";
+			String commonName25="1-gm-marigold-african-double-seeds";
+			String commonName26="2-gm-brinjal-banarshi-giant-seeds";
+			String commonName27="2-gm-cosmos-mix-seeds";
+			String commonName28="6-gm-coriander-seeds";
+			String commonName29="10-gm-okra-seeds-lady-finger";
+			String commonName30="16-gm-spinach-seeds-palak";
+			Seed seed1=new Seed(commonName1,"Jan","EveryDay","Easy","35degree","hybrid","bestQuality",200,seedsCost1,65,url1);
+			Seed seed2=new Seed(commonName2,"feb","EveryDay","Easy","25degree","hybrid","bestQuality",200,seedsCost2,65,url2);
+			Seed seed3=new Seed(commonName3,"March","EveryDay","Easy","50degree","hybrid","bestQuality",200,seedsCost3,65,url3);
+			Seed seed4=new Seed(commonName4,"April","EveryDay","Easy","45degree","hybrid","bestQuality",200,seedsCost4,65,url4);
+			Seed seed5=new Seed(commonName5,"May","EveryDay","Easy","65degree","hybrid","bestQuality",200,seedsCost5,65,url5);
+			Seed seed6=new Seed(commonName6,"June","EveryDay","Easy","45degree","hybrid","bestQuality",200,seedsCost6,65,url6);
+			Seed seed7=new Seed(commonName7,"July","EveryDay","Easy","56degree","hybrid","bestQuality",200,seedsCost7,65,url7);
+			Seed seed8=new Seed(commonName8,"Aug","EveryDay","Easy","36degree","hybrid","bestQuality",200,seedsCost8,65,url8);
+			Seed seed9=new Seed(commonName9,"Sept","EveryDay","Easy","535degree","hybrid","bestQuality",200,seedsCost9,65,url9);
+			Seed seed10=new Seed(commonName10,"dec","EveryDay","Easy","95degree","hybrid","bestQuality",200,seedsCost10,65,url10);
+			Seed seed11=new Seed(commonName11,"Jan","EveryDay","Easy","35degree","hybrid","bestQuality",200,seedsCost1,65,url1);
+			Seed seed12=new Seed(commonName12,"feb","EveryDay","Easy","25degree","hybrid","bestQuality",200,seedsCost2,65,url12);
+			Seed seed13=new Seed(commonName13,"March","EveryDay","Easy","50degree","hybrid","bestQuality",200,seedsCost3,65,url13);
+			Seed seed14=new Seed(commonName14,"April","EveryDay","Easy","45degree","hybrid","bestQuality",200,seedsCost4,65,url14);
+			Seed seed15=new Seed(commonName15,"May","EveryDay","Easy","65degree","hybrid","bestQuality",200,seedsCost5,65,url15);
+			Seed seed16=new Seed(commonName16,"June","EveryDay","Easy","45degree","hybrid","bestQuality",200,seedsCost6,65,url16);
+			Seed seed17=new Seed(commonName17,"July","EveryDay","Easy","56degree","hybrid","bestQuality",200,seedsCost7,65,url17);
+			Seed seed18=new Seed(commonName18,"Aug","EveryDay","Easy","36degree","hybrid","bestQuality",200,seedsCost8,65,url18);
+			Seed seed19=new Seed(commonName19,"Sept","EveryDay","Easy","535degree","hybrid","bestQuality",200,seedsCost9,65,url19);
+			Seed seed20=new Seed(commonName20,"dec","EveryDay","Easy","95degree","hybrid","bestQuality",200,seedsCost10,65,url20);
+			Seed seed21=new Seed(commonName21,"Jan","EveryDay","Easy","35degree","hybrid","bestQuality",200,seedsCost1,65,url21);
+			Seed seed22=new Seed(commonName22,"feb","EveryDay","Easy","25degree","hybrid","bestQuality",200,seedsCost2,65,url22);
+			Seed seed23=new Seed(commonName23,"March","EveryDay","Easy","50degree","hybrid","bestQuality",200,seedsCost3,65,url23);
+			Seed seed24=new Seed(commonName24,"April","EveryDay","Easy","45degree","hybrid","bestQuality",200,seedsCost4,65,url24);
+			Seed seed25=new Seed(commonName25,"May","EveryDay","Easy","65degree","hybrid","bestQuality",200,seedsCost5,65,url25);
+			Seed seed26=new Seed(commonName26,"June","EveryDay","Easy","45degree","hybrid","bestQuality",200,seedsCost6,65,url26);
+			Seed seed27=new Seed(commonName27,"July","EveryDay","Easy","56degree","hybrid","bestQuality",200,seedsCost7,65,url27);
+			Seed seed28=new Seed(commonName28,"Aug","EveryDay","Easy","36degree","hybrid","bestQuality",200,seedsCost8,65,url28);
+			Seed seed29=new Seed(commonName29,"Sept","EveryDay","Easy","535degree","hybrid","bestQuality",200,seedsCost9,65,url29);
+			Seed seed30=new Seed(commonName30,"dec","EveryDay","Easy","95degree","hybrid","bestQuality",200,seedsCost10,65,url30);
+			seedRepo.save(seed1);
+			seedRepo.save(seed2);
+			seedRepo.save(seed3);
+			seedRepo.save(seed4);
+			seedRepo.save(seed5);
+			seedRepo.save(seed6);
+			seedRepo.save(seed7);
+            seedRepo.save(seed8);
+			seedRepo.save(seed9);
+			seedRepo.save(seed10);
+			seedRepo.save(seed11);
+			seedRepo.save(seed12);
+			seedRepo.save(seed13);
+			seedRepo.save(seed14);
+            seedRepo.save(seed15);
+			seedRepo.save(seed16);
+			seedRepo.save(seed17);
+			seedRepo.save(seed18);
+			seedRepo.save(seed19);
+			seedRepo.save(seed20);
+			seedRepo.save(seed21);
+            seedRepo.save(seed22);
+			seedRepo.save(seed23);
+			seedRepo.save(seed24);
+			seedRepo.save(seed25);
+			seedRepo.save(seed26);
+			seedRepo.save(seed27);
+			seedRepo.save(seed28);
+            seedRepo.save(seed29);
+			seedRepo.save(seed30);
+		};
+	}
+    
+   
 }
 
