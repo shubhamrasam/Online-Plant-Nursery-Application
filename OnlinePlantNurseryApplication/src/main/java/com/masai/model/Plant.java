@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Entity
 public class Plant {
@@ -31,9 +31,29 @@ public class Plant {
 	private String plantDescription;
 	private Integer plantStock;
 	private Double plantCost;
+	private String url;
     
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private Planter planter;
+
+	public Plant(Integer plantHeight, String plantSpread, String plantCommonName, String bloomTime,
+			String medicinalCulinaryUse, String difficultyLevel, String temparature, String typeOfPlant,
+			String plantDescription, Integer plantStock, Double plantCost, String url) {
+		super();
+		this.plantHeight = plantHeight;
+		this.plantSpread = plantSpread;
+		this.plantCommonName = plantCommonName;
+		this.bloomTime = bloomTime;
+		this.medicinalCulinaryUse = medicinalCulinaryUse;
+		this.difficultyLevel = difficultyLevel;
+		this.temparature = temparature;
+		this.typeOfPlant = typeOfPlant;
+		this.plantDescription = plantDescription;
+		this.plantStock = plantStock;
+		this.plantCost = plantCost;
+		this.url = url;
+	}
+	
 	
 }
