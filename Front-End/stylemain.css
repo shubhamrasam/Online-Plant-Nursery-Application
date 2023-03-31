@@ -1,0 +1,261 @@
+
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* ----------------------Navbar---------------------- */
+
+#navbar-head{
+
+   width:100%;
+   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+}
+
+.main-nav{
+
+   width:100%;
+   height:60px;
+   /* border:1px solid black; */
+   display: flex;
+
+}
+
+.main-nav > .logo-section{
+
+   width:20%;
+   display: flex;
+   /* border:1px solid black; */
+   justify-content: space-evenly;
+   align-items: center;
+   color:#009152;
+
+}
+
+.main-nav > .nav-links{
+
+  width:80%;
+  height: 100%;
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  /* border:1px solid black; */
+
+}
+
+.main-nav > .nav-links > li{
+   list-style: none;
+   width:12%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   /* align-items: center; */
+   /* border:1px solid black; */
+   text-align: center;
+   /* padding: 4px 18px; */
+   /* border-radius: 15px; */
+}
+
+
+
+.main-nav > .nav-links > li>a{
+  
+  margin-top: 18px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #009152;
+
+}
+
+.main-nav > .nav-links > li>a:hover{
+
+  border-bottom:2px double #009152;
+  color: #009152;
+  margin-bottom: 5px;
+}
+
+
+.main-nav > .logo-section > img{
+    
+    width:20%;
+   
+}
+
+
+/* ----------------upper-mid----------------- */
+
+.upper-mid{
+
+  width:100%;
+
+}
+
+.banner-mid{
+
+  width:100%;
+
+}
+
+.banner-mid > img{
+
+  width:100%;
+
+}
+
+.banner-mid-low{ 
+
+    /* border:1px solid black; */
+    /* margin: 10px auto; */
+    background-color: blanchedalmond; 
+    height:200px;
+    display: flex;
+}
+
+.banner-mid-low>div{
+
+  width:50%; 
+   /* border:1px solid black;  */
+
+ }
+
+.banner-mid-low>div:first-child{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+   /* border:1px solid black;  */
+   font-size: 22px;
+  color: #009152;
+
+}
+
+ .banner-mid-low>div:last-child{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+} 
+
+ .banner-mid-low>div:last-child>button{
+
+  background-color: #009152;
+  color:white;
+  border:1px double #009152;
+  padding:8px 16px;
+  font-size: 18px;
+  border-radius: 10px;
+
+}
+
+.banner-mid-low>div:last-child>button:hover{
+
+  cursor:pointer;
+  background-color: white;
+  color:#009152;
+  border:2px double #009152;
+  padding:8px 16px;
+  border-radius: 10px;
+
+}
+
+/* ------------------------------------ */
+
+
+/* .explore{
+  
+   
+} */
+
+.explore-heading{
+
+   margin: 18px;
+
+}
+
+.explore > .explore-section{
+
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+/* ------------------------------------------ */
+
+
+.buyplant-heading{
+
+  margin: 18px;
+
+}
+
+.buyplant > .buyplant-section{
+
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width:100%;
+}
+
+.buyplant-section>div{
+
+  width:23%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: center; */
+  height:500px;
+  /* border: 1px solid black; */
+
+}
+
+.buyplant-section>div>h2{
+   
+  font-size: 18px;
+
+}
+
+.buyplant-section>div>button{
+   
+  margin-bottom: 10px;
+  background-color: #009152;
+  border: 2px double #009152;
+  color:white;
+  font-size: 16px;
+  padding:6px 18px;
+  border-radius: 8px;
+}
+
+.buyplant-section>div>button:hover{
+
+  cursor: pointer;
+  background-color: white;
+  color: #009152;
+   
+}
+
+/* --------------------Banner-------------------- */
+
+
+.slogan-banner{
+  margin:30px auto;
+  height:40px;
+  /* border: 1px solid black; */
+  display: flex;
+  background-color: #009152;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.slogan-banner>div{
+
+   color:white;
+
+}
