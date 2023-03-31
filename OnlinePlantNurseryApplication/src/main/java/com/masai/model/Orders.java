@@ -32,7 +32,8 @@ public class Orders {
 	private Double totalCost;
 	
 	@OneToOne(cascade=CascadeType.ALL , fetch = FetchType.EAGER)
-	@JoinColumn(name="pid")
+	@JoinColumn(name="planterId")
+	@JsonIgnore
 	private Planter planters;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

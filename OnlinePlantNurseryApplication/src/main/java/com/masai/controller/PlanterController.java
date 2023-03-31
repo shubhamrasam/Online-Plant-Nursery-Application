@@ -24,8 +24,8 @@ public class PlanterController {
 	PlanterService planterservice;
 	
 	@PostMapping("/planters/add")
-	 public ResponseEntity<Planter> addPlanter(@RequestBody Planter planter,@RequestParam(name="key") String key) {
-		 Planter planter1 = planterservice.addPlanter(planter,key);
+	 public ResponseEntity<Planter> addPlanter(@RequestBody Planter planter,@RequestParam(name="plantId",required = false) Integer plantId,@RequestParam(name="seedId",required = false) Integer seedId,@RequestParam(name="key") String key) {
+		 Planter planter1 = planterservice.addPlanter(planter,plantId,seedId,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 

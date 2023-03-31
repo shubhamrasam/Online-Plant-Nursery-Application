@@ -28,40 +28,40 @@ public class OrderServiceController {
 	private OrdersService ordersService;
 
 
-	@PostMapping("/{key}")
-	public ResponseEntity<Orders> addOrder(@RequestBody Orders order,@PathVariable String key) throws OrderException, LoginException{
+	@PostMapping("/add")
+	public ResponseEntity<Orders> addOrder(@RequestBody Orders order,@RequestParam(name="planterId") Integer planterId,@RequestParam(name="customerId") Integer customerId, @RequestParam(name="key") String key) throws OrderException, LoginException{
 		
-		Orders newOrder = ordersService.addOrder(order, key);
+		Orders newOrder = ordersService.addOrder(order, planterId, customerId, key);
 		
 		return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{key}")
-	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order,@PathVariable String key) throws OrderException, LoginException{
+	@PutMapping("/update")
+	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order,@RequestParam(name="key") String key) throws OrderException, LoginException{
 		
 		Orders updatedOrder = ordersService.updateOrder(order, key);
 		
 		return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{orderId}/{key}")
-	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@PathVariable String key) throws OrderException, LoginException{
+	@DeleteMapping("/delete/{orderId}")
+	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key) throws OrderException, LoginException{
 		
 		Orders deletedOrder = ordersService.deleteOrder(orderId, key);
 		
 		return new ResponseEntity<>(deletedOrder, HttpStatus.OK);
 	}
 
-	@GetMapping("/{orderId}/{key}")
-	public ResponseEntity<Orders> viewOrder(@PathVariable Integer orderId,@PathVariable String key) throws OrderException, LoginException{
+	@GetMapping("/getById/{orderId}")
+	public ResponseEntity<Orders> viewOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key) throws OrderException, LoginException{
 		
 		Orders order = ordersService.viewOrder(orderId, key);
 		
 		return new ResponseEntity<>(order, HttpStatus.OK);
 	}
 
-	@GetMapping("/{key}")
-	public ResponseEntity<List<Orders>> viewAllOrders(@PathVariable String key) throws OrderException, LoginException{
+	@GetMapping("/getAll")
+	public ResponseEntity<List<Orders>> viewAllOrders(@RequestParam(name="key") String key) throws OrderException, LoginException{
 		
 		List<Orders> orders = ordersService.viewAllOrders(key);
 		

@@ -6,14 +6,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.exception.CustomerException;
 import com.masai.exception.LoginException;
 import com.masai.exception.OrderException;
-import com.masai.model.AdminSession;
+import com.masai.exception.PlanterException;
+import com.masai.model.Customer;
 import com.masai.model.CustomerSession;
 import com.masai.model.Orders;
+import com.masai.model.Planter;
 import com.masai.repository.AdminSessionRepository;
+import com.masai.repository.CustomerRepository;
 import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.OrdersRepository;
+import com.masai.repository.PlanterRepository;
 
 @Service
 public class OrdersServiceImpl implements OrdersService{
@@ -25,23 +30,36 @@ public class OrdersServiceImpl implements OrdersService{
 	private AdminSessionRepository adminSessionRepository;
 	
 	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private PlanterRepository planterRepository;
+	
+	@Autowired
 	private CustomerSessionRepository customerSessionRepository;
 	
 	@Override
-	public Orders addOrder(Orders order ,String key) throws OrderException , LoginException {
+	public Orders addOrder(Orders order ,Integer planterId, Integer customerId, String key) throws OrderException , LoginException,CustomerException ,PlanterException{
 		
-        CustomerSession customerSession = customerSessionRepository.findByUuid(key);
-          
+        CustomerSession customerSession = customerSessionRepository.findByUuid(key); 
         if(customerSession == null) throw new LoginException("Key is not valid login again.");
-		
-		Optional<Orders> optOrder = ordersRepository.findById(order.getBookingOrderId());
-		
-		if(optOrder.isEmpty()) {
+
+			
+			if(customerId!=null) {
+				Optional<Customer> c1 = customerRepository.findById(customerId);
+				if(c1.isEmpty()) throw new CustomerException("No customer found with id: " + customerId);
+				else order.setCustomer(c1.get());
+			}
+			
+			if(planterId!=null) {
+				Optional<Planter> p1 = planterRepository.findById(planterId);
+				if(p1.isEmpty()) throw new PlanterException("No Planter Found with given Id: "+planterId);
+				else order.setPlanters(p1.get());
+			}
+			
 			
 			return ordersRepository.save(order);
-		}
-		
-		throw new OrderException("Order already present with id: "+order.getBookingOrderId());
+	
 		
 	}
 

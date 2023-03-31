@@ -34,21 +34,11 @@ public class SeedServiceImpl implements SeedService{
         AdminSession adminSession = adminSessionRepository.findByUuid(key);
         
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
+	
+       Seed seed1 =  seedRepository.save(seed);
 		
-	    Optional<Seed> optSeed = seedRepository.findById(seed.getSeedid());
-	    
-	    
-	    
+		return seed1;
 		
-		if(optSeed.isPresent()) {
-			Seed s1=optSeed.get();
-			Planter p=s1.getPlanter();
-			s1.setPlanter(p);
-			return seedRepository.save(s1);
-			
-		}
-		
-		throw new SeedException("Seed already present with id: "+seed.getSeedid());
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package com.masai.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -38,6 +40,7 @@ public class Customer extends User{
 	private Address address;
 	
 	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Orders> orderList;
 	
 }
