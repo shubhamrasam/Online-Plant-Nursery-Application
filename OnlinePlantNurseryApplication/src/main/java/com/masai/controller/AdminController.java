@@ -3,6 +3,7 @@ package com.masai.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.masai.service.AdminService;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/admins")
 public class AdminController {
 	@Autowired

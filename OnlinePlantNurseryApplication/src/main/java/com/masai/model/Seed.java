@@ -1,15 +1,10 @@
 package com.masai.model;
 
-import org.hibernate.validator.constraints.UniqueElements;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +19,7 @@ public class Seed {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer seedid;  
 	
-	@UniqueElements
+	
 	private String commonName;
 	private String bloomTime; 
 	private String watering;
@@ -36,7 +31,4 @@ public class Seed {
 	private Double seedsCost;
 	private Integer seedsPerPacket;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonIgnore
-	private Planter planter;
 }

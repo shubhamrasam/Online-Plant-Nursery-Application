@@ -1,7 +1,7 @@
 
 package com.masai.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,11 +31,14 @@ public class Planter {
 	private Integer planterStock;
 	private Integer planterCost;
     
-	@OneToMany(mappedBy="planter" , cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
-	private List<Plant> plantList;
+	@OneToOne(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+	@JsonIgnore
+	@JoinColumn(name = "plantId")
+	private Plant plant;
 
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+	@JoinColumn(name = "seedId")
+	private Seed seed;
 
-	@OneToMany(mappedBy="planter" ,cascade = CascadeType.ALL,fetch =FetchType.EAGER )
-	private List<Seed> seedList;
-	
 }
