@@ -45,7 +45,7 @@ public class PlantServiceImpl implements PlantService{
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
         
 		Optional<Plant> p1 = plantrepo.findById(plant.getPlantId());
-		if(p1.isEmpty())throw new PlantException("Plant not fount");
+		if(p1.isEmpty())throw new PlantException("Plant not fount with given plantID: "+plant.getPlantId());
 		else {
 			Plant p2 = p1.get();
 			p2.setPlantId(plant.getPlantId());
@@ -76,7 +76,7 @@ public class PlantServiceImpl implements PlantService{
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
         
 		Optional<Plant> p1 = plantrepo.findById(plant.getPlantId());
-		if(p1.isEmpty())throw new PlantException("Plant not fount");
+		if(p1.isEmpty())throw new PlantException("Plant not fount with given plantID: "+plant.getPlantId());
 		else {
 			Plant p2 = p1.get();
 			plantrepo.delete(p2);
@@ -93,7 +93,7 @@ public class PlantServiceImpl implements PlantService{
         if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
         
 		Optional<Plant> p1 = plantrepo.findById(plantId);
-		if(p1.isEmpty())throw new PlantException("Plant not fount");
+		if(p1.isEmpty())throw new PlantException("Plant not fount with given plantID: "+plantId);
 		else {
 			Plant p2 = p1.get();
 			return p2;
@@ -108,7 +108,7 @@ public class PlantServiceImpl implements PlantService{
         if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
         
 		Plant p1 = plantrepo.findByplantCommonName(commonName);
-		if(p1 == null)throw new PlantException("Plant not fount");
+		if(p1 == null)throw new PlantException("Plant not fount with given commonName: "+commonName);
 		else {
 			return p1;
 		}
@@ -136,7 +136,7 @@ public class PlantServiceImpl implements PlantService{
         if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
         
 		List<Plant> pl = plantrepo.findBytypeOfPlant(typeOfPlant);
-		if(pl.isEmpty()) throw new PlantException("No Plant Exist");
+		if(pl.isEmpty()) throw new PlantException("No Plant Exist with the given typeOfPlant: "+typeOfPlant);
 		else
 		return pl;
 	}

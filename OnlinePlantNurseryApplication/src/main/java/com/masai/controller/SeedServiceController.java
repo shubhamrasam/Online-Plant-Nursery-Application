@@ -27,49 +27,49 @@ public class SeedServiceController {
 	private SeedService seedService;
 
 
-	@PostMapping("/{key}")
+	@PostMapping("/add/{key}")
 	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed, @PathVariable("key") String key)
 			throws SeedException, LoginException {
 		Seed savedSeed = seedService.addSeed(seed, key);
 		return new ResponseEntity<>(savedSeed, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{key}")
+	@PutMapping("/update/{key}")
 	public ResponseEntity<Seed> updateSeed(@RequestBody Seed seed, @PathVariable("key") String key)
 			throws SeedException, LoginException {
 		Seed updatedSeed = seedService.updateSeed(seed, key);
 		return new ResponseEntity<>(updatedSeed, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{seedId}/{key}")
+	@DeleteMapping("/delete/{seedId}/{key}")
 	public ResponseEntity<Seed> deleteSeed(@PathVariable("seedId") Integer seedId, @PathVariable("key") String key)
 			throws SeedException, LoginException {
 		Seed deletedSeed = seedService.deleteSeed(seedId, key);
 		return new ResponseEntity<>(deletedSeed, HttpStatus.OK);
 	}
 
-	@GetMapping("/{seedId}/{key}")
+	@GetMapping("/get/{seedId}/{key}")
 	public ResponseEntity<Seed> viewSeed(@PathVariable("seedId") Integer seedId, @PathVariable("key") String key)
 			throws SeedException, LoginException {
 		Seed seed = seedService.viewSeed(seedId, key);
 		return new ResponseEntity<>(seed, HttpStatus.OK);
 	}
 
-	@GetMapping("/common-name/{commonName}/{key}")
+	@GetMapping("/getByCommon-name/{commonName}/{key}")
 	public ResponseEntity<Seed> viewSeed(@PathVariable("commonName") String commonName, @PathVariable("key") String key)
 			throws SeedException, LoginException {
 		Seed seed = seedService.viewSeed(commonName, key);
 		return new ResponseEntity<>(seed, HttpStatus.OK);
 	}
 
-	@GetMapping("/{key}")
+	@GetMapping("/getAll{key}")
 	public ResponseEntity<List<Seed>> viewAllSeeds(@PathVariable("key") String key)
 			throws SeedException, LoginException {
 		List<Seed> seeds = seedService.viewAllSeeds(key);
 		return new ResponseEntity<>(seeds, HttpStatus.OK);
 	}
 
-	@GetMapping("/type-of-seed/{typeOfSeed}/{key}")
+	@GetMapping("/getByType-of-seed/{typeOfSeed}/{key}")
 	public ResponseEntity<List<Seed>> viewAllSeeds(@PathVariable("typeOfSeed") String typeOfSeed,
 			@PathVariable("key") String key) throws SeedException, LoginException {
 		List<Seed> seeds = seedService.viewAllSeeds(typeOfSeed, key);

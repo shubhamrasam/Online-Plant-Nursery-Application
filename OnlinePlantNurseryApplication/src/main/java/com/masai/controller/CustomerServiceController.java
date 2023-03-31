@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.CustomerException;
@@ -27,33 +28,33 @@ public class CustomerServiceController {
 	@Autowired
 	private CustomerService customerService;
 
-	@PostMapping
+	@PostMapping("/add")
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws CustomerException {
 		Customer addedCustomer = customerService.addCustomer(customer);
 		return ResponseEntity.ok().body(addedCustomer);
 	}
 
-	@PutMapping("/{customerId}/{key}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable int customerId,@PathVariable String key, @RequestBody Customer customer)
+	@PutMapping("/update/{customerId}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable int customerId,@RequestParam(name="key") String key, @RequestBody Customer customer)
 			throws CustomerException {
 		customer.setCustomerId(customerId);
 		Customer updatedCustomer = customerService.updateCustomer(customerId,customer,key);
 		return ResponseEntity.ok().body(updatedCustomer);
 	}
 
-	@DeleteMapping("/{customerId}/{key}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable int customerId,@PathVariable String key) throws CustomerException {
+	@DeleteMapping("/delete/{customerId}")
+	public ResponseEntity<String> deleteCustomer(@PathVariable int customerId,@RequestParam(name="key") String key) throws CustomerException {
 		customerService.deleteCustomer(customerId, key);
 		return ResponseEntity.noContent().build();
 	}
 
-	@GetMapping("/{customerId}/{key}")
-	public ResponseEntity<Customer> viewCustomer(@PathVariable int customerId,@PathVariable String key) throws CustomerException {
+	@GetMapping("/getById/{customerId}")
+	public ResponseEntity<Customer> viewCustomer(@PathVariable int customerId,@RequestParam(name="key") String key) throws CustomerException {
 		Customer customer = customerService.viewCustomer(customerId, key);
 		return ResponseEntity.ok().body(customer);
 	}
 
-	@GetMapping
+	@GetMapping("/getAll")
 	public ResponseEntity<List<Customer>> viewAllCustomers() throws CustomerException {
 		List<Customer> customers = customerService.viewAllCustomers();
 		return ResponseEntity.ok().body(customers);
