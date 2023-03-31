@@ -1,5 +1,6 @@
 package com.masai.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -7,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+
+import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -34,9 +37,7 @@ public class Seed {
 	private Integer seedsPerPacket;
 	private String url;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	
-	private Planter planter;
+
 
 	public Seed(String commonName, String bloomTime, String watering, String difficultyLevel, String temparature,
 			String typeOfSeeds, String seedsDescription, Integer seedsStock, Double seedsCost, Integer seedsPerPacket,
@@ -56,5 +57,5 @@ public class Seed {
 	}
 
 	
-	
+
 }

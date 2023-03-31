@@ -26,6 +26,7 @@ public class SeedServiceController {
 	@Autowired
 	private SeedService seedService;
 
+
 	@PostMapping("/{key}")
 	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed, @PathVariable("key") String key)
 			throws SeedException, LoginException {
@@ -74,4 +75,5 @@ public class SeedServiceController {
 		List<Seed> seeds = seedService.viewAllSeeds(typeOfSeed, key);
 		return new ResponseEntity<>(seeds, HttpStatus.OK);
 	}
+
 }

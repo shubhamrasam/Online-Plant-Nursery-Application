@@ -34,17 +34,7 @@ public class PlanterServiceImpl implements PlanterService{
 		// TODO Auto-generated method stub
 		AdminSession adminSession = adminSessionRepository.findByUuid(key);
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
-          List<Seed> seed=planter.getSeedList();
-         
-         List<Plant> plant=planter.getPlantList();
-         plant.forEach(e->{
-        	 planter.getPlantList().add(e);
-         });
-        	
-        	seed.forEach(e->{
-        		planter.getSeedList().add(e);
-        	});
-         
+
           
 		Planter p1 = planterRepo.save(planter);
 		return p1;

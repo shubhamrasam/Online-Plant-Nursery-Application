@@ -23,7 +23,7 @@ public class AdminController {
 	
 	@PostMapping
 	public ResponseEntity<Admin> saveAdminHandler(@Valid @RequestBody Admin admin){
-		return new ResponseEntity<>(adminservice.addAdmin(admin),HttpStatus.CREATED);
+		return new ResponseEntity<>(adminservice.addAdmin(admin),HttpStatus.OK);
 	}
 	
 	
