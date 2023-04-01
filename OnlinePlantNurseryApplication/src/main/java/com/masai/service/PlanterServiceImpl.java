@@ -44,13 +44,15 @@ public class PlanterServiceImpl implements PlanterService{
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
         
         if(plantId!=null) {
-        	 Plant plant = plantRepo.findById(plantId).get();
-        	 planter.setPlant(plant);
+        	 Optional<Plant> p1 = plantRepo.findById(plantId);
+        	 if(p1.isPresent())
+        	 planter.setPlant(p1.get());
         }
         
         if(seedId!=null) {
-        	Seed seed= seedRepo.findById(seedId).get();
-        	planter.setSeed(seed);
+        	Optional<Seed> s1 = seedRepo.findById(seedId);
+        	if(s1.isPresent())
+        	planter.setSeed(s1.get());
         }
         	
 		Planter p1 = planterRepo.save(planter);
