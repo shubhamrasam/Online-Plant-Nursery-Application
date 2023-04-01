@@ -25,7 +25,9 @@ public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Integer bookingOrderId;
+	@JsonIgnore
 	private LocalDateTime orderDateTime;
 	private String transcationMode;
 	private Integer quantity;
@@ -36,9 +38,9 @@ public class Orders {
 	@JsonIgnore
 	private Planter planters;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL ,fetch = FetchType.EAGER)
 	@JsonIgnore
-	@JoinColumn(name = "cid")
+	@JoinColumn(name="customerId")
 	private Customer customer;
 	
 }
