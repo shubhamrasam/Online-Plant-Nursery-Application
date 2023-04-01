@@ -32,6 +32,9 @@
 <p>6. Hibernate<p/>
 <p>7. MySQL<p/>
 <p>8. Swagger <p/>
+<p>8. JAVASCRIPT <p/>
+<p>8. HTML <p/>
+<p>8. css <p/>
 
 <h1>Contributor</h1>
 <p>1. Subham Rasam <p/>
