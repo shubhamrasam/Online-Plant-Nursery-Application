@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.Planter;
+import com.masai.model.Seed;
 import com.masai.service.PlanterService;
 
 @RestController
@@ -37,9 +38,9 @@ public class PlanterController {
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
-	@DeleteMapping("/planter/delete")
-	 public ResponseEntity<Planter> deletePlanter(@RequestBody Planter planter,@RequestParam(name="key") String key) {
-		 Planter planter1 = planterservice.deletePlanter(planter,key);
+	@DeleteMapping("/planter/delete/{planterId}")
+	 public ResponseEntity<Planter> deletePlanter(@RequestParam(name="key") String key,@PathVariable Integer planterId) {
+		 Planter planter1 = planterservice.deletePlanter(planterId,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
 	 
@@ -50,20 +51,26 @@ public class PlanterController {
 	 }
 	 
 	 @GetMapping("/planters/getbyshape/{planterShape}")
-	 public ResponseEntity<Planter> viewPlanter(@PathVariable String planterShape,@RequestParam(name="key") String key) {
-		 Planter planter1 = planterservice.viewPlanter(planterShape,key);
-		 return new ResponseEntity<>(planter1,HttpStatus.OK);
+	 public ResponseEntity<List<Planter>> viewPlanter(@PathVariable String planterShape,@RequestParam(name="key") String key) {
+		 List<Planter> planterList = planterservice.viewPlanter(planterShape,key);
+		 return new ResponseEntity<>(planterList,HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/planters/getall")
 	 public ResponseEntity<List<Planter>>  viewAllPlanters(@RequestParam(name="key") String key){
-		 List<Planter> planter1 = planterservice.viewAllPlanters(key);
-		 return new ResponseEntity<>(planter1,HttpStatus.OK);
+		 List<Planter> planterList = planterservice.viewAllPlanters(key);
+		 return new ResponseEntity<>(planterList,HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/planters/getbycostbetween")
 	 public ResponseEntity<List<Planter>> viewAllPlanters(@RequestParam(name = "min") double minCost ,@RequestParam(name = "max") double maxCost, @RequestParam(name="key") String key){
-		 List<Planter> planter1 = planterservice.viewAllPlanters(minCost, maxCost,key);
-		 return new ResponseEntity<>(planter1,HttpStatus.OK);
+		 List<Planter> planterList = planterservice.viewAllPlanters(minCost, maxCost,key);
+		 return new ResponseEntity<>(planterList,HttpStatus.OK);
 	 }
+	 
+	 @GetMapping("/planters/getallbypage")
+		public ResponseEntity<List<Planter>> getPagination( @RequestParam(name="pageNo") Integer pageNo) {
+			List<Planter> Planterlist = planterservice.getListByPagination(pageNo);
+			return new ResponseEntity<>(Planterlist,HttpStatus.OK);
+		}
 }

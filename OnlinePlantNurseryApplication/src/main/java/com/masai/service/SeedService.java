@@ -3,7 +3,9 @@ package com.masai.service;
 import java.util.List;
 
 import com.masai.exception.LoginException;
+import com.masai.exception.PlantException;
 import com.masai.exception.SeedException;
+import com.masai.model.Plant;
 import com.masai.model.Seed;
 
 public interface SeedService {
@@ -22,5 +24,6 @@ public interface SeedService {
 	
 	public List<Seed> viewAllSeeds(String typeOfSeed , String key) throws SeedException,LoginException;
 	
+	public List<Seed> getListByPagination(Integer pageNo)throws SeedException;
 	
 }

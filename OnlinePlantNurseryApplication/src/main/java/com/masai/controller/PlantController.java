@@ -40,10 +40,10 @@ public class PlantController {
 		
 	}
 
-	@DeleteMapping("/plants/delete")
-	public ResponseEntity<Plant> deletePlant(@RequestBody Plant  plant,@RequestParam(name="key") String key){
+	@DeleteMapping("/plants/delete/{PlantId}")
+	public ResponseEntity<Plant> deletePlant(@PathVariable Integer PlantId,@RequestParam(name="key") String key){
 		// TODO Auto-generated method stub
-		Plant plant1 = plantservice.deletePlant(plant,key);
+		Plant plant1 = plantservice.deletePlant(PlantId,key);
 		return new ResponseEntity<>(plant1,HttpStatus.OK);
 	}
 
@@ -68,6 +68,12 @@ public class PlantController {
 	@GetMapping("/plants/getallbytype/{typeOfPlant}")
 	public ResponseEntity<List<Plant>> viewAllPlants(@PathVariable String typeOfPlant,@RequestParam(name="key") String key){
 		List<Plant> plant1 = plantservice.viewAllPlants(typeOfPlant,key);
+		return new ResponseEntity<>(plant1,HttpStatus.OK);
+	}
+    
+	@GetMapping("/plants/getallbypage")
+	public ResponseEntity<List<Plant>> getPagination( @RequestParam(name="pageNo") Integer pageNo) {
+		List<Plant> plant1 = plantservice.getListByPagination(pageNo);
 		return new ResponseEntity<>(plant1,HttpStatus.OK);
 	}
 
