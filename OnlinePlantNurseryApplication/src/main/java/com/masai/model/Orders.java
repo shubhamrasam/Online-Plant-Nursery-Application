@@ -25,7 +25,7 @@ public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
+//	@JsonIgnore
 	private Integer bookingOrderId;
 	@JsonIgnore
 	private LocalDateTime orderDateTime;
@@ -33,14 +33,21 @@ public class Orders {
 	private Integer quantity;
 	private Double totalCost;
 	
-	@OneToOne(cascade=CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "order",cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="planterId")
 	@JsonIgnore
 	private Planter planters;
 	
-	@ManyToOne(cascade=CascadeType.ALL ,fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
 	@JoinColumn(name="customerId")
 	private Customer customer;
+
+	@Override
+	public String toString() {
+		return "Orders [bookingOrderId=" + bookingOrderId + ", orderDateTime=" + orderDateTime + ", transcationMode="
+				+ transcationMode + ", quantity=" + quantity + ", totalCost=" + totalCost + ", planters=" + planters
+				+ "]";
+	}
 	
 }

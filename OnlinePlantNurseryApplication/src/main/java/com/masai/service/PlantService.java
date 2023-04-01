@@ -10,9 +10,10 @@ public interface PlantService {
     
 	 public Plant addPlant(Plant plant, String key)throws LoginException;  
 	 public Plant updatePlant(Plant plant, String key)throws PlantException,LoginException; 
-	 public Plant deletePlant(Plant plant, String key)throws PlantException,LoginException;
+	 public Plant deletePlant(Integer PlantId, String key)throws PlantException,LoginException;
 	 public Plant viewPlant(int plantId, String key)throws PlantException,LoginException;
 	 public Plant viewPlant(String commonName, String key)throws PlantException,LoginException;
 	 public List<Plant>  viewAllPlants(String key)throws PlantException,LoginException;
 	 public List<Plant> viewAllPlants(String typeOfPlant, String key)throws PlantException,LoginException;
+	 public List<Plant> getListByPagination(Integer pageNo)throws PlantException;
 }

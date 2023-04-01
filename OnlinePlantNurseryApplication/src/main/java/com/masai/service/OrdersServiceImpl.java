@@ -54,10 +54,6 @@ public class OrdersServiceImpl implements OrdersService{
 					Customer c2 = c1.get();
 					order.setOrderDateTime(LocalDateTime.now());
 					order.setCustomer(c1.get());
-//					List<Orders> odList = new ArrayList<>();
-//					odList.add(order);
-//					c2.setOrderList(odList); 
-//					customerRepository.save(c2);
 					
 				}
 			}
@@ -91,7 +87,7 @@ public class OrdersServiceImpl implements OrdersService{
 		
 		Orders order1 = orderOpt.get();
 		order1.setBookingOrderId(order.getBookingOrderId());
-		order1.setOrderDateTime(order.getOrderDateTime());
+		order1.setOrderDateTime(LocalDateTime.now());
 		order1.setQuantity(order.getQuantity());
 		order1.setTotalCost(order.getTotalCost());
 		order1.setTranscationMode(order.getTranscationMode());
@@ -111,26 +107,18 @@ public class OrdersServiceImpl implements OrdersService{
 		
 		if(customerOpt.isEmpty()) throw new CustomerException("Customer not Found");
 		Customer c1 = customerOpt.get();
+		System.out.println(c1);
 		List<Orders> orderList = c1.getOrderList();
-		orderList.forEach(od ->{
-			if(od.getBookingOrderId()== orderId) {
-				orderList.remove(od);
-			}
-		});
-		
-		customerRepository.save(c1);
+         for(int i=0;i<orderList.size();i++) {
+        	 if(orderId==orderList.get(i).getBookingOrderId()) {
+        		 orderList.remove(i);
+        	 }
+         }
+         System.out.println(c1);
+         c1.setOrderList(orderList);
+        customerRepository.save(c1);
 		ordersRepository.delete(orderOpt.get());
-		
-//		if(orderOpt.isEmpty()) {
-//			
-//			throw new OrderException("Order is not present with id: "+orderId);
-//			
-//		}else {
-//			Orders order1 = orderOpt.get();
-//			ordersRepository.removeIt(order1);
-//			
-//			return order1;
-//		}
+		System.out.println("end=======");
 		return orderOpt.get();
 	}
 

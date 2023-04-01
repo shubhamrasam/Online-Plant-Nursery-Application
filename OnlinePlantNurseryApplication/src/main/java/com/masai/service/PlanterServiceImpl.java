@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.LoginException;
+import com.masai.exception.PlantException;
 import com.masai.exception.PlanterException;
 import com.masai.model.AdminSession;
 import com.masai.model.CustomerSession;
@@ -16,6 +20,7 @@ import com.masai.model.Seed;
 import com.masai.repository.AdminSessionRepository;
 import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.PlantRepository;
+import com.masai.repository.PlanterPaginationRepo;
 import com.masai.repository.PlanterRepository;
 import com.masai.repository.SeedRepository;
 
@@ -30,6 +35,9 @@ public class PlanterServiceImpl implements PlanterService{
 	
 	@Autowired
 	SeedRepository seedRepo;
+	
+	@Autowired
+	PlanterPaginationRepo planterPaginationRepo;
 	
 	@Autowired
 	private AdminSessionRepository adminSessionRepository;
@@ -91,13 +99,13 @@ public class PlanterServiceImpl implements PlanterService{
 	}
 
 	@Override
-	public Planter deletePlanter(Planter planter, String key) throws PlanterException,LoginException {
+	public Planter deletePlanter(Integer planterId, String key) throws PlanterException,LoginException {
 		// TODO Auto-generated method stub
 		AdminSession adminSession = adminSessionRepository.findByUuid(key);
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
         
-		Optional<Planter> p1 = planterRepo.findById(planter.getPlanterid());
-		if(p1.isEmpty()) throw new PlanterException("No Planter Found with the given planterId: "+planter.getPlanterid());
+		Optional<Planter> p1 = planterRepo.findById(planterId);
+		if(p1.isEmpty()) throw new PlanterException("No Planter Found with the given planterId: "+planterId);
 		else {
 			Planter p2 = p1.get();
 			planterRepo.delete(p2);
@@ -122,13 +130,13 @@ public class PlanterServiceImpl implements PlanterService{
 	}
 
 	@Override
-	public Planter viewPlanter(String planterShape, String key) throws PlanterException,LoginException {
+	public List<Planter> viewPlanter(String planterShape, String key) throws PlanterException,LoginException {
 		// TODO Auto-generated method stub
 		AdminSession adminSession = adminSessionRepository.findByUuid(key);
 		CustomerSession customerSession = customerSessionRepository.findByUuid(key);
         if(adminSession == null && customerSession==null) throw new LoginException("Key is not valid login again.");
         
-		Planter p1  = planterRepo.findByPlanterShape(planterShape);
+        List<Planter> p1  = planterRepo.findByPlanterShape(planterShape);
 		if(p1 == null) throw new PlanterException("No Planter Found with the given planterShape: "+planterShape);
 		else
 		return p1;
@@ -158,6 +166,17 @@ public class PlanterServiceImpl implements PlanterService{
 		if(pl.isEmpty()) throw new PlanterException("No Planter Exist witnin the given range between "+minCost+" and "+maxCost);
 		else
 		return pl;
+	}
+
+	@Override
+	public List<Planter> getListByPagination(Integer pageNo) throws PlanterException {
+		
+         Pageable firstPageWithTwoElements =  PageRequest.of(pageNo, 30);
+
+		Page<Planter> pl = planterPaginationRepo.findAll(firstPageWithTwoElements);
+		if(pl.isEmpty()) throw new PlantException("No Plant Exist");
+		else
+		return pl.getContent();
 	}
 
 

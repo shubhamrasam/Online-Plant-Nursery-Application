@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.LoginException;
@@ -13,6 +16,7 @@ import com.masai.model.CustomerSession;
 import com.masai.model.Plant;
 import com.masai.repository.AdminSessionRepository;
 import com.masai.repository.CustomerSessionRepository;
+import com.masai.repository.PlantPaginationRepo;
 import com.masai.repository.PlantRepository;
 
 
@@ -26,6 +30,9 @@ public class PlantServiceImpl implements PlantService{
 	
 	@Autowired
 	private CustomerSessionRepository customerSessionRepository;
+	
+	@Autowired
+	private PlantPaginationRepo plantPaginationRepo;
 	
 	
 	@Override
@@ -60,6 +67,8 @@ public class PlantServiceImpl implements PlantService{
 			p2.setPlantDescription(plant.getPlantDescription());
 			p2.setPlantStock(plant.getPlantStock());
 			p2.setPlantCost(plant.getPlantCost());
+			p2.setUrl(plant.getUrl());
+			
 			
 			plantrepo.save(p2);
 			
@@ -70,13 +79,13 @@ public class PlantServiceImpl implements PlantService{
 	}
 
 	@Override
-	public Plant deletePlant(Plant plant,String key) throws PlantException,LoginException {
+	public Plant deletePlant(Integer PlantId,String key) throws PlantException,LoginException {
 		// TODO Auto-generated method stub
 		AdminSession adminSession = adminSessionRepository.findByUuid(key);
         if(adminSession == null) throw new LoginException("Key is not valid login again.");
         
-		Optional<Plant> p1 = plantrepo.findById(plant.getPlantId());
-		if(p1.isEmpty())throw new PlantException("Plant not fount with given plantID: "+plant.getPlantId());
+		Optional<Plant> p1 = plantrepo.findById(PlantId);
+		if(p1.isEmpty())throw new PlantException("Plant not found with given plantID: "+PlantId);
 		else {
 			Plant p2 = p1.get();
 			plantrepo.delete(p2);
@@ -139,6 +148,20 @@ public class PlantServiceImpl implements PlantService{
 		if(pl.isEmpty()) throw new PlantException("No Plant Exist with the given typeOfPlant: "+typeOfPlant);
 		else
 		return pl;
+	}
+
+	@Override
+	public List<Plant> getListByPagination(Integer pageNo) throws PlantException{
+		
+
+        Pageable firstPageWithTwoElements =  PageRequest.of(pageNo, 30);
+
+        
+		Page<Plant> pl = plantPaginationRepo.findAll(firstPageWithTwoElements);
+		if(pl.isEmpty()) throw new PlantException("No Plant Exist");
+		else
+		return pl.getContent();
+        
 	}
 
 	
