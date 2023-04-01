@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.exception.CustomerException;
 import com.masai.exception.LoginException;
 import com.masai.exception.OrderException;
 import com.masai.model.Orders;
@@ -47,9 +48,9 @@ public class OrderServiceController {
 	}
 
 	@DeleteMapping("/delete/{orderId}")
-	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key) throws OrderException, LoginException{
+	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="cid") Integer customerId,@RequestParam(name="key") String key) throws OrderException, LoginException,CustomerException{
 		
-		Orders deletedOrder = ordersService.deleteOrder(orderId, key);
+		Orders deletedOrder = ordersService.deleteOrder(orderId, key ,customerId);
 		
 		return new ResponseEntity<>(deletedOrder, HttpStatus.OK);
 	}

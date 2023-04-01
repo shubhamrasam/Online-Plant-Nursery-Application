@@ -14,7 +14,7 @@ public interface OrdersService {
 	
 	public Orders updateOrder(Orders order,String key) throws OrderException,LoginException;
 	
-	public Orders deleteOrder(Integer orderId,String key) throws OrderException,LoginException;
+	public Orders deleteOrder(Integer orderId,String key,Integer customerId) throws OrderException,LoginException,CustomerException;
 	
 	public Orders viewOrder(Integer orderId,String key) throws OrderException,LoginException;
 	
