@@ -68,9 +68,21 @@ public class PlanterServiceImpl implements PlanterService{
 		if(p1.isEmpty()) throw new PlanterException("No Planter Found with the given planterId: "+planter.getPlanterid());
 		else {
 			
-			planterRepo.save(p1.get());
+			Planter p2 = p1.get();
+			p2.setPlanterid(planter.getPlanterid());
+			p2.setPlanterheight(planter.getPlanterheight());
+			p2.setPlanterCapacity(planter.getPlanterCapacity());
+			p2.setDrinageHoles(planter.getDrinageHoles());
+			p2.setPlanterColor(planter.getPlanterColor());
+			p2.setPlanterShape(planter.getPlanterShape());
+			p2.setPlanterStock(planter.getPlanterStock());
+			p2.setPlanterCost(planter.getPlanterCost());
+//			p2.setPlant(planter.getPlant());
+//			p2.setSeed(planter.getSeed());
 			
-			return p1.get();
+			planterRepo.save(p2);
+			
+			return p2;
 		}
 		
 		

@@ -20,6 +20,8 @@ import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.OrdersRepository;
 import com.masai.repository.PlanterRepository;
 
+import jakarta.persistence.criteria.Order;
+
 @Service
 public class OrdersServiceImpl implements OrdersService{
 
@@ -78,7 +80,14 @@ public class OrdersServiceImpl implements OrdersService{
 			
 		}
 		
-		return ordersRepository.save(order);
+		Orders order1 = orderOpt.get();
+		order1.setBookingOrderId(order.getBookingOrderId());
+		order1.setOrderDateTime(order.getOrderDateTime());
+		order1.setQuantity(order.getQuantity());
+		order1.setTotalCost(order.getTotalCost());
+		order1.setTranscationMode(order.getTranscationMode());
+		
+		return ordersRepository.save(order1);
 	}
 
 	@Override
