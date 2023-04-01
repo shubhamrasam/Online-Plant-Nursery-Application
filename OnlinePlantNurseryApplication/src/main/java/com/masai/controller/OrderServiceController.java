@@ -39,7 +39,7 @@ public class OrderServiceController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order,@RequestParam(name="key") String key) throws OrderException, LoginException{
+	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order,@RequestParam(name="key") String key){
 		
 		Orders updatedOrder = ordersService.updateOrder(order, key);
 		
@@ -47,7 +47,7 @@ public class OrderServiceController {
 	}
 
 	@DeleteMapping("/delete/{orderId}")
-	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key) throws OrderException, LoginException{
+	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key){
 		
 		Orders deletedOrder = ordersService.deleteOrder(orderId, key);
 		
@@ -55,7 +55,7 @@ public class OrderServiceController {
 	}
 
 	@GetMapping("/getById/{orderId}")
-	public ResponseEntity<Orders> viewOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key) throws OrderException, LoginException{
+	public ResponseEntity<Orders> viewOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key){
 		
 		Orders order = ordersService.viewOrder(orderId, key);
 		
@@ -63,7 +63,7 @@ public class OrderServiceController {
 	}
 
 	@GetMapping("/getAll")
-	public ResponseEntity<List<Orders>> viewAllOrders(@RequestParam(name="key") String key) throws OrderException, LoginException{
+	public ResponseEntity<List<Orders>> viewAllOrders(@RequestParam(name="key") String key){
 		
 		List<Orders> orders = ordersService.viewAllOrders(key);
 		

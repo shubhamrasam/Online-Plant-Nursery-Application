@@ -103,11 +103,14 @@ public class OrdersServiceImpl implements OrdersService{
 			
 			throw new OrderException("Order is not present with id: "+orderId);
 			
+		}else {
+			Orders order1 = orderOpt.get();
+			ordersRepository.delete(order1);
+			return order1;
 		}
 		
-		ordersRepository.delete(orderOpt.get());
 		
-		return orderOpt.get();
+		
 	}
 
 	@Override
