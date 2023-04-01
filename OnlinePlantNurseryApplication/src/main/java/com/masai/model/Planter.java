@@ -19,7 +19,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Entity
 public class Planter {
@@ -33,6 +33,7 @@ public class Planter {
 	private String planterShape;
 	private Integer planterStock;
 	private Integer planterCost;
+	private String url;
 
     
 	@OneToOne(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
@@ -44,6 +45,25 @@ public class Planter {
 	@OneToOne(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
 	@JoinColumn(name = "seedId")
 	private Seed seed;
+
+	public Planter(Integer planterheight, Integer planterCapacity, Integer drinageHoles, String planterColor,
+			String planterShape, Integer planterStock, Integer planterCost, String url) {
+		super();
+		this.planterheight = planterheight;
+		this.planterCapacity = planterCapacity;
+		this.drinageHoles = drinageHoles;
+		this.planterColor = planterColor;
+		this.planterShape = planterShape;
+		this.planterStock = planterStock;
+		this.planterCost = planterCost;
+		this.url = url;
+	}
+	
+	
+
+
+	
+	
 
 
 }
