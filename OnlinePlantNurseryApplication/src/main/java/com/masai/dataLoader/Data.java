@@ -446,6 +446,8 @@ public class Data {
 		seedRepo.save(seed30);
 		
 	}
+	
+	
 	public void addPlanter(PlanterRepository planterRepo) {
 		
 		Integer  holes1=1;
@@ -529,6 +531,7 @@ public class Data {
 		String url18="https://user-images.githubusercontent.com/87129673/229305345-c5a530ae-0a13-4365-8003-eb83502fd625.JPG";
 		String url19="https://user-images.githubusercontent.com/87129673/229305347-deb47c29-9be1-405b-ad3a-11dfde2f70bc.JPG";
 		String url20="https://user-images.githubusercontent.com/87129673/229305349-b30fd5af-78db-49eb-b82d-e0b52cf5c167.JPG";
+		
 		Integer  stock1=80;
 		Integer  stock2=23;
 		Integer  stock3=19;
@@ -571,7 +574,9 @@ public class Data {
 		Planter planter18=new Planter(pheight8,capacity7,holes8,"red","round",stock8,cost8,"url18");
 		Planter planter19=new Planter(pheight9,capacity8,holes9,"red","round",stock9,cost9,"url19");
 		Planter planter20=new Planter(pheight10,capacity9,holes10,"red","round",stock10,cost10,"url20");
-        planterRepo.save( planter1);
+       
+		
+		planterRepo.save( planter1);
 		planterRepo.save( planter2);
 		planterRepo.save( planter3);
 		planterRepo.save( planter4);

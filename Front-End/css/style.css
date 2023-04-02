@@ -6,28 +6,21 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgb(130, 106, 251);
-}
+
 
 #outer-container{
    width:80%;
-  
-   margin:10px auto;
-   display:flex;
-   border: 1px solid black;
-   justify-content: space-between;
+   margin:50px auto;
+   /* display:flex; */
+   /* border: 1px solid black; */
+   /* justify-content: space-between; */
 }
 
 #outer-container>div{
     
-    width:48%;
-    border: 1px solid black;
+    width:50%;
+    margin: 10px auto;
+    /* border: 1px solid black; */
 }
 
 #outer-container>div:first-child{
