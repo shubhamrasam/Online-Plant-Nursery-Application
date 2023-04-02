@@ -166,7 +166,7 @@ public class Data {
 				35, price2, url2);
 		Plant plant3 = new Plant(3, "small", name3, "feb", "No", "high", "30.c", "Non-medicinal",
 				"verygood Plant for show", 32, price3, url3);
-		Plant plant4 = new Plant(4, "small", name4, "April", "yes", "high", "30.c", "flower", "verygood Plant for show",
+	    Plant plant4 = new Plant(4, "small", name4, "April", "yes", "high", "30.c", "flower", "verygood Plant for show",
 				34, price4, url4);
 		Plant plant5 = new Plant(5, "small", name5, "May", "yes", "high", "30.c", "froot", "verygood Plant for show",
 				33, price5, url5);
@@ -261,17 +261,17 @@ public class Data {
 				"verygood Plant for show", 26, price49, url49);
 		Plant plant50 = new Plant(50, "small", name50, "Sept", "yes", "high", "30.c", "Fruit",
 				"verygood Plant for show", 66, price50, url50);
-		plantrepo.save(plant1);
-		plantrepo.save(plant2);
-		plantrepo.save(plant3);
-		plantrepo.save(plant4);
-		plantrepo.save(plant5);
-		plantrepo.save(plant6);
-		plantrepo.save(plant7);
-		plantrepo.save(plant8);
-		plantrepo.save(plant9);
-		plantrepo.save(plant10);
-		plantrepo.save(plant11);
+//		plantrepo.save(plant1);
+//		plantrepo.save(plant2);
+//		plantrepo.save(plant3);
+//		plantrepo.save(plant4);
+//		plantrepo.save(plant5);
+//		plantrepo.save(plant6);
+//		plantrepo.save(plant7);
+//		plantrepo.save(plant8);
+//		plantrepo.save(plant9);
+//		plantrepo.save(plant10);
+//		plantrepo.save(plant11);
 		plantrepo.save(plant12);
 		plantrepo.save(plant13);
 		plantrepo.save(plant14);
@@ -484,7 +484,7 @@ public class Data {
 		
 		
 		
-		Integer   cost1=802;
+		Integer  cost1=802;
 		Integer  cost2=230;
 		Integer  cost3=199;
 		Integer  cost4=820;
