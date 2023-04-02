@@ -5,14 +5,27 @@ let pageNo = document.querySelector(".active").innerText - 1;
 let allPages = document.querySelectorAll(".page");
 
 for (let page of allPages) {
-  if (page.classList.contains("active")) {
-    page.classList.remove("active");
+
+  if(page.classList.contains("active")){
+     
+     page.classList.remove("active");
   }
 
   page.addEventListener("click", function (e) {
+    
+    resetPrimaryClassInPaginationButtons();
     page.classList.add("active");
+
   });
+
 }
+
+function resetPrimaryClassInPaginationButtons() {
+  for (let page of allPages) {
+    page.classList.remove('active');
+  }
+}
+
 
 // import { footer } from "../components/footer.js";
 import { brands_function } from "./refine.js";
