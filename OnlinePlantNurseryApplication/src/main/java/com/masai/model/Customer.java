@@ -40,7 +40,7 @@ public class Customer extends User{
 	private Address address;
 	
 	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL , fetch = FetchType.EAGER)
-//	@JsonIgnore
+	@JsonIgnore
 	private List<Orders> orderList;
 	
 }
