@@ -1,8 +1,10 @@
 package com.masai.dataLoader;
 
 import com.masai.model.Plant;
+import com.masai.model.Planter;
 import com.masai.model.Seed;
 import com.masai.repository.PlantRepository;
+import com.masai.repository.PlanterRepository;
 import com.masai.repository.SeedRepository;
 
 public class Data {
@@ -259,17 +261,17 @@ public class Data {
 				"verygood Plant for show", 26, price49, url49);
 		Plant plant50 = new Plant(50, "small", name50, "Sept", "yes", "high", "30.c", "Fruit",
 				"verygood Plant for show", 66, price50, url50);
-		plantrepo.save(plant1);
-		plantrepo.save(plant2);
-		plantrepo.save(plant3);
-		plantrepo.save(plant4);
-		plantrepo.save(plant5);
-		plantrepo.save(plant6);
-		plantrepo.save(plant7);
-		plantrepo.save(plant8);
-		plantrepo.save(plant9);
-		plantrepo.save(plant10);
-		plantrepo.save(plant11);
+//		plantrepo.save(plant1);
+//		plantrepo.save(plant2);
+//		plantrepo.save(plant3);
+//		plantrepo.save(plant4);
+//		plantrepo.save(plant5);
+//		plantrepo.save(plant6);
+//		plantrepo.save(plant7);
+//		plantrepo.save(plant8);
+//		plantrepo.save(plant9);
+//		plantrepo.save(plant10);
+//		plantrepo.save(plant11);
 		plantrepo.save(plant12);
 		plantrepo.save(plant13);
 		plantrepo.save(plant14);
@@ -442,6 +444,153 @@ public class Data {
 		seedRepo.save(seed28);
         seedRepo.save(seed29);
 		seedRepo.save(seed30);
+		
+	}
+	public void addPlanter(PlanterRepository planterRepo) {
+		
+		Integer  holes1=1;
+		Integer  holes2=2;
+		Integer  holes3=1;
+		Integer  holes4=6;
+		Integer  holes5=3;
+		Integer  holes6=4;
+		Integer  holes7=4;
+		Integer  holes8=5;
+		Integer  holes9=2;
+		Integer  holes10=3;
+		
+
+	
+		String name1="reca-40-multicolour-window-planter-set-of";
+		String name2="reusable-50-holes-seedling-tray-set-of";
+		String name3="reusable-104-holes-seedling-tray-set";
+		String name4="small-black-zuri-planter-ball-rib";
+		String name5="small-gold-zuri-planter-ball-groove";
+		String name6="small-light-grey-oslo-planter";
+		String name7="7 5-inch-set-of-5-multi";
+		String name8="AImagewithPlant";
+		String name9="chatura-self-watering-pots-set-of";
+		String name10="dove-with-plant";
+		String name11="football-5-inch-yellow-with-plant";
+		String name12="inch-set-of-six";
+		String name13="lilac-stories-set-of-3-magenta";
+		String name14="macrame-three-layer-hanger";
+		String name15="macrame-two-layer-hange";
+		String name16="multicolour-set-of";
+		String name17="nature_s-hum1w";
+		String name18="phoenix-12-inch-white-with-plant_1";
+		String name19="pot_redone592";
+		String name20="precious-horcrux-small-grey-with-plan";
+		
+		
+		
+		Integer  cost1=802;
+		Integer  cost2=230;
+		Integer  cost3=199;
+		Integer  cost4=820;
+		Integer  cost5=320;
+		Integer  cost6=460;
+		Integer  cost7=450;
+		Integer  cost8=599;
+		Integer  cost9=299;
+		Integer  cost10=399;
+		
+		
+		
+		Integer  pheight1=8;
+		Integer  pheight2=2;
+		Integer  pheight3=1;
+		Integer  pheight4=8;
+		Integer  pheight5=3;
+		Integer  pheight6=4;
+		Integer  pheight7=4;
+		Integer  pheight8=5;
+		Integer  pheight9=2;
+		Integer  pheight10=3;
+		
+		
+		String url1="https://user-images.githubusercontent.com/87129673/229305299-e7be09ec-e3c0-4f89-ac6c-adbd6a23dcc3.JPG";
+		String url2="https://user-images.githubusercontent.com/87129673/229305302-ad375c47-714e-4815-911a-fed562e276f5.JPG";
+		String url3="https://user-images.githubusercontent.com/87129673/229305305-0bcf9d03-79b4-4263-86b2-9ef611c756e4.JPG";
+		String url4="https://user-images.githubusercontent.com/87129673/229305307-b41cb3db-48e2-4220-91e8-30581099d9a1.JPG";
+		String url5="https://user-images.githubusercontent.com/87129673/229305308-af632585-90dd-49d7-9b2f-6ca8bee94258.JPG";
+		String url6="https://user-images.githubusercontent.com/87129673/229305311-50674a54-39d0-430a-a025-ac7d6779388b.JPG";
+		String url7="https://user-images.githubusercontent.com/87129673/229305313-2cf2c345-9058-4c46-8609-a2fc37db064c.JPG";
+		String url8="https://user-images.githubusercontent.com/87129673/229305320-db6de6a1-01e3-4db2-8296-58ca7aa0d376.JPG";
+		String url9="https://user-images.githubusercontent.com/87129673/229305321-527c152d-c572-4cb2-8d4b-6319fe027d73.JPG";
+		String url10="https://user-images.githubusercontent.com/87129673/229305324-20c19517-08a6-4f28-b324-b8a20db8d2ad.JPG";
+		String url11="https://user-images.githubusercontent.com/87129673/229305327-d2519eee-7dbe-4d37-ad10-a278c2d968a2.JPG";
+		String url12="https://user-images.githubusercontent.com/87129673/229305330-9afeb374-16d7-48f5-b3bd-5cf9e303e2c3.JPG";
+		String url13="https://user-images.githubusercontent.com/87129673/229305334-c0bfb853-08bd-43e4-b702-401d3492670d.JPG";
+		String ur114="https://user-images.githubusercontent.com/87129673/229305337-e34aeddf-92b2-4091-b555-bd7c27f7bb82.JPG";
+		String url15="https://user-images.githubusercontent.com/87129673/229305339-08f0f10c-26da-46d8-a347-5db5ec830474.JPG";
+		String url16="https://user-images.githubusercontent.com/87129673/229305341-eaba816a-2057-40ad-ba45-21e69ab35285.JPG";
+		String url17="https://user-images.githubusercontent.com/87129673/229305343-901befaa-b755-4de1-8116-78afdb9c3521.JPG";
+		String url18="https://user-images.githubusercontent.com/87129673/229305345-c5a530ae-0a13-4365-8003-eb83502fd625.JPG";
+		String url19="https://user-images.githubusercontent.com/87129673/229305347-deb47c29-9be1-405b-ad3a-11dfde2f70bc.JPG";
+		String url20="https://user-images.githubusercontent.com/87129673/229305349-b30fd5af-78db-49eb-b82d-e0b52cf5c167.JPG";
+		Integer  stock1=80;
+		Integer  stock2=23;
+		Integer  stock3=19;
+		Integer  stock4=60;
+		Integer  stock5=30;
+		Integer  stock6=40;
+		Integer  stock7=40;
+		Integer  stock8=59;
+		Integer  stock9=29;
+		Integer  stock10=32;
+		
+		Integer  capacity1=80;
+		Integer  capacity2=23;
+		Integer  capacity3=19;
+		Integer  capacity4=60;
+		Integer  capacity5=30;
+		Integer  capacity6=40;
+		Integer  capacity7=40;
+		Integer  capacity8=59;
+		Integer  capacity9=29;
+		Integer  capacity10=32;
+
+		Planter planter1=new Planter(pheight1,capacity1,holes1,"red","round",stock1,cost1,"url1");
+		Planter planter2=new Planter(pheight2,capacity1,holes2,"green","round",stock2,cost2,"url2");
+		Planter planter3=new Planter(pheight3,capacity2,holes3,"red","round",stock3,cost3,"url3");
+		Planter planter4=new Planter(pheight4,capacity3,holes4,"red","round",stock4,cost4,"url4");
+		Planter planter5=new Planter(pheight5,capacity4,holes5,"red","round",stock5,cost5,"url5");
+		Planter planter6=new Planter(pheight6,capacity5,holes6,"red","round",stock6,cost6,"url6");
+		Planter planter7=new Planter(pheight7,capacity6,holes7,"red","round",stock7,cost7,"url7");
+		Planter planter8=new Planter(pheight8,capacity7,holes8,"red","round",stock8,cost8,"url8");
+		Planter planter9=new Planter(pheight9,capacity8,holes9,"red","round",stock9,cost9,"url9");
+		Planter planter10=new Planter(pheight10,capacity9,holes10,"red","round",stock10,cost10,"url10");
+		Planter planter11=new Planter(pheight1,capacity1,holes1,"red","round",stock1,cost1,"url11");
+		Planter planter12=new Planter(pheight2,capacity1,holes2,"green","round",stock2,cost2,"url12");
+		Planter planter13=new Planter(pheight3,capacity2,holes3,"red","round",stock3,cost3,"url13");
+		Planter planter14=new Planter(pheight4,capacity3,holes4,"red","round",stock4,cost4,"url14");
+		Planter planter15=new Planter(pheight5,capacity4,holes5,"red","round",stock5,cost5,"url15");
+		Planter planter16=new Planter(pheight6,capacity5,holes6,"red","round",stock6,cost6,"url16");
+		Planter planter17=new Planter(pheight7,capacity6,holes7,"red","round",stock7,cost7,"url17");
+		Planter planter18=new Planter(pheight8,capacity7,holes8,"red","round",stock8,cost8,"url18");
+		Planter planter19=new Planter(pheight9,capacity8,holes9,"red","round",stock9,cost9,"url19");
+		Planter planter20=new Planter(pheight10,capacity9,holes10,"red","round",stock10,cost10,"url20");
+        planterRepo.save( planter1);
+		planterRepo.save( planter2);
+		planterRepo.save( planter3);
+		planterRepo.save( planter4);
+		planterRepo.save( planter5);
+		planterRepo.save( planter6);
+		planterRepo.save( planter7);
+        planterRepo.save( planter8);
+		planterRepo.save( planter9);
+		planterRepo.save( planter10);
+		planterRepo.save( planter11);
+		planterRepo.save( planter12);
+		planterRepo.save( planter13);
+		planterRepo.save( planter14);
+        planterRepo.save( planter15);
+		planterRepo.save( planter16);
+		planterRepo.save( planter17);
+		planterRepo.save( planter18);
+		planterRepo.save( planter19);
+		planterRepo.save( planter20);
 		
 	}
 

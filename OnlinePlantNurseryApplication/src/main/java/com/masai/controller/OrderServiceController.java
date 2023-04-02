@@ -5,22 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.exception.CustomerException;
 import com.masai.exception.LoginException;
 import com.masai.exception.OrderException;
 import com.masai.model.Orders;
 import com.masai.service.OrdersService;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/orders")
 public class OrderServiceController {
 
@@ -36,7 +39,7 @@ public class OrderServiceController {
 		return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/update")
+	@PatchMapping("/update")
 	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order,@RequestParam(name="key") String key) throws OrderException, LoginException{
 		
 		Orders updatedOrder = ordersService.updateOrder(order, key);
@@ -45,9 +48,9 @@ public class OrderServiceController {
 	}
 
 	@DeleteMapping("/delete/{orderId}")
-	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="key") String key) throws OrderException, LoginException{
+	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="cid") Integer customerId,@RequestParam(name="key") String key) throws OrderException, LoginException,CustomerException{
 		
-		Orders deletedOrder = ordersService.deleteOrder(orderId, key);
+		Orders deletedOrder = ordersService.deleteOrder(orderId, key ,customerId);
 		
 		return new ResponseEntity<>(deletedOrder, HttpStatus.OK);
 	}

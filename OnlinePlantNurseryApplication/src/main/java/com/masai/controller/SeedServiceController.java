@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.LoginException;
 import com.masai.exception.SeedException;
+import com.masai.model.Plant;
 import com.masai.model.Seed;
 import com.masai.service.SeedService;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/seeds")
 public class SeedServiceController {
 
@@ -68,6 +71,12 @@ public class SeedServiceController {
 	public ResponseEntity<List<Seed>> viewAllSeeds(@PathVariable("typeOfSeed") String typeOfSeed,@RequestParam(name="key") String key){
 		List<Seed> seeds = seedService.viewAllSeeds(typeOfSeed, key);
 		return new ResponseEntity<>(seeds, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getallbypage")
+	public ResponseEntity<List<Seed>> getPagination( @RequestParam(name="pageNo") Integer pageNo) {
+		List<Seed> seedlist = seedService.getListByPagination(pageNo);
+		return new ResponseEntity<>(seedlist,HttpStatus.OK);
 	}
 
 }

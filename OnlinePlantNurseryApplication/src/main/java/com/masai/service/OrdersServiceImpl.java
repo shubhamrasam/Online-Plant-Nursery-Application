@@ -1,5 +1,7 @@
 package com.masai.service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +21,6 @@ import com.masai.repository.CustomerRepository;
 import com.masai.repository.CustomerSessionRepository;
 import com.masai.repository.OrdersRepository;
 import com.masai.repository.PlanterRepository;
-
-import jakarta.persistence.criteria.Order;
 
 @Service
 public class OrdersServiceImpl implements OrdersService{
@@ -50,7 +50,12 @@ public class OrdersServiceImpl implements OrdersService{
 			if(customerId!=null) {
 				Optional<Customer> c1 = customerRepository.findById(customerId);
 				if(c1.isEmpty()) throw new CustomerException("No customer found with id: " + customerId);
-				else order.setCustomer(c1.get());
+				else {
+					Customer c2 = c1.get();
+					order.setOrderDateTime(LocalDateTime.now());
+					order.setCustomer(c1.get());
+					
+				}
 			}
 			
 			if(planterId!=null) {
@@ -82,7 +87,7 @@ public class OrdersServiceImpl implements OrdersService{
 		
 		Orders order1 = orderOpt.get();
 		order1.setBookingOrderId(order.getBookingOrderId());
-		order1.setOrderDateTime(order.getOrderDateTime());
+		order1.setOrderDateTime(LocalDateTime.now());
 		order1.setQuantity(order.getQuantity());
 		order1.setTotalCost(order.getTotalCost());
 		order1.setTranscationMode(order.getTranscationMode());
@@ -91,22 +96,29 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 
 	@Override
-	public Orders deleteOrder(Integer orderId ,String key) throws OrderException , LoginException{
+	public Orders deleteOrder(Integer orderId ,String key,Integer customerId) throws OrderException , LoginException,CustomerException{
 		
         CustomerSession customerSession = customerSessionRepository.findByUuid(key);
         
         if(customerSession == null) throw new LoginException("Key is not valid login again.");
 		
 		Optional<Orders> orderOpt =  ordersRepository.findById(orderId);
+		Optional<Customer> customerOpt = customerRepository.findById(customerId);
 		
-		if(orderOpt.isEmpty()) {
-			
-			throw new OrderException("Order is not present with id: "+orderId);
-			
-		}
-		
+		if(customerOpt.isEmpty()) throw new CustomerException("Customer not Found");
+		Customer c1 = customerOpt.get();
+		System.out.println(c1);
+		List<Orders> orderList = c1.getOrderList();
+         for(int i=0;i<orderList.size();i++) {
+        	 if(orderId==orderList.get(i).getBookingOrderId()) {
+        		 orderList.remove(i);
+        	 }
+         }
+         System.out.println(c1);
+         c1.setOrderList(orderList);
+        customerRepository.save(c1);
 		ordersRepository.delete(orderOpt.get());
-		
+		System.out.println("end=======");
 		return orderOpt.get();
 	}
 

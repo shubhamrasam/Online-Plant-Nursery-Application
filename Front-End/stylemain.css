@@ -50,15 +50,11 @@
 
 .main-nav > .nav-links > li{
    list-style: none;
-   width:12%;
+   width:10%;
    height: 100%;
    display: flex;
    justify-content: center;
-   /* align-items: center; */
-   /* border:1px solid black; */
    text-align: center;
-   /* padding: 4px 18px; */
-   /* border-radius: 15px; */
 }
 
 
@@ -66,9 +62,10 @@
 .main-nav > .nav-links > li>a{
   
   margin-top: 18px;
-  font-size: 18px;
+  font-size: 14px;
   text-decoration: none;
   color: #009152;
+  font-weight: 800;
 
 }
 
@@ -187,6 +184,14 @@
     text-align: center;
 }
 
+.explore > .explore-section>div{
+
+   width:23%;
+   display:flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
 /* ------------------------------------------ */
 
 
@@ -245,7 +250,7 @@
 
 
 .slogan-banner{
-  margin:30px auto;
+  margin:40px auto;
   height:40px;
   /* border: 1px solid black; */
   display: flex;
@@ -257,5 +262,89 @@
 .slogan-banner>div{
 
    color:white;
+
+}
+
+
+/* -----------------about me------------------------*/
+
+.about-section{
+
+   width:95%;
+   margin:40px auto;
+
+}
+
+.about-section>div:first-child{
+   
+  margin:20px auto;
+
+}
+
+.about-section>div:last-child>p{
+
+   margin-top:15px;
+   letter-spacing: 1px;
+
+}
+
+
+/* -----------------footer----------------------*/
+#footer{
+   
+  display:flex;
+  border:1px solid black;
+  
+}
+
+#footer-main{
+  display:flex;
+  border:1px solid black;
+  flex-direction: column;
+
+}
+
+#footer>div:first-child{
+  border:1px solid black;
+   width:50%;
+
+}
+#footer>div:last-child{
+  border:1px solid black;
+   width:50%;
+
+}
+
+
+#anchor-tags{
+   
+  display: flex;
+  border:1px solid black;
+  justify-content: space-around;
+
+}
+
+#anchor-tags>div{
+   
+  display: flex;
+  flex-direction: column;
+  /* border:1px solid black; */
+}
+
+#anchor-tags >div:last-child{
+
+  display: flex;
+  flex-direction: column;
+
+}
+#anchor-tags >div:last-child>div{
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+#footer-bootom{
+
 
 }

@@ -4,16 +4,20 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.masai.exception.LoginException;
+import com.masai.exception.PlantException;
 import com.masai.exception.SeedException;
 import com.masai.model.AdminSession;
 import com.masai.model.CustomerSession;
-import com.masai.model.Planter;
 import com.masai.model.Seed;
 import com.masai.repository.AdminSessionRepository;
 import com.masai.repository.CustomerSessionRepository;
+import com.masai.repository.SeedPaginationRepo;
 import com.masai.repository.SeedRepository;
 
 @Service
@@ -27,6 +31,9 @@ public class SeedServiceImpl implements SeedService{
 	
 	@Autowired
 	private CustomerSessionRepository customerSessionRepository;
+	
+	@Autowired
+	private SeedPaginationRepo seedPaginationRepo;
 	
 	@Override
 	public Seed addSeed(Seed seed, String key) throws SeedException,LoginException {
@@ -160,6 +167,18 @@ public class SeedServiceImpl implements SeedService{
 		
 		return seeds;
 		
+	}
+
+	@Override
+	public List<Seed> getListByPagination(Integer pageNo) throws SeedException {
+		
+        Pageable firstPageWithTwoElements =  PageRequest.of(pageNo, 30);
+
+        
+		Page<Seed> pl = seedPaginationRepo.findAll(firstPageWithTwoElements);
+		if(pl.isEmpty()) throw new PlantException("No Plant Exist");
+		else
+		return pl.getContent();
 	}
 
 	
