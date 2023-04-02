@@ -1,0 +1,583 @@
+#container {
+     height: 100vh;
+}
+
+header {
+     width: 100;
+}
+
+#loader {
+     width: 100%;
+     height: 100vh;
+     background: black;
+     opacity: .6;
+     position: absolute;
+     top: 0;
+     left: 0;
+     display: none;
+}
+
+#loader div {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     translate: -50% -50%;
+}
+
+
+#cart-navbar {
+     width: 90%;
+     height: 60px;
+     display: flex;
+     margin: auto;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
+
+#cart-navbar>div:first-child {
+     height: 100%;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+}
+
+#cart-navbar>div:first-child a {
+     display: flex;
+     height: 100%;
+     justify-content: flex-start;
+     align-items: center;
+     width: fit-content;
+}
+
+#logo {
+     width: 80%;
+     height: 80%;
+     cursor: pointer;
+}
+
+
+
+#login_div {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+}
+
+#login_div span {
+     margin-left: 7px;
+     font-size: 1.3rem;
+}
+
+#cart-main {
+     width: 100%;
+     /* border: 1px solid red; */
+}
+
+#myBag_major {
+     width: 100%;
+     display: flex;
+     background-color: #0092DF;
+     height: 60px;
+}
+
+#myBag_minor {
+     display: flex;
+     margin: auto;
+     height: 2rem;
+     width: 90%;
+     align-items: center;
+}
+
+#myBag_minor>h3 {
+     font-size: 22px;
+     font-weight: 600;
+     letter-spacing: 1.4px;
+     color: white;
+}
+
+#all_eliments {
+     width: 100%;
+     margin-top: 10px;
+     /* border: 2px solid green; */
+}
+
+#main_div {
+     width: 90%;
+     margin: auto;
+     display: flex;
+     justify-content: space-between;
+     /* border: 2px solid blue; */
+     gap: 20px;
+     margin-top: 15px;
+}
+
+#lhs_cartDiv {
+     width: 70%;
+     min-height: 600px;
+     display: flex;
+     flex-direction: column;
+     /* border: 1px solid red; */
+}
+
+#lhs_cartDiv h3 {
+     font-family: Avenir-Next, sans-serif;
+     font-weight: 400;
+     letter-spacing: 0.6px;
+}
+
+#present_address_Pr {
+     display: none;
+}
+
+#nrml_present_address1_Pr {
+     font-size: 13px;
+     font-family: Avenir-Next, sans-serif;
+     font-weight: 400;
+     letter-spacing: 0.6px;
+     margin-left: 2%;
+}
+
+#nrml_present_address2_Pr {
+     font-size: 13px;
+     font-family: Avenir-Next, sans-serif;
+     font-weight: 400;
+     letter-spacing: 0.6px;
+     margin-left: 2%;
+}
+
+#spcl_present_address_Pr {
+     font-size: 14px;
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: 0.6px;
+     margin-left: 2%;
+}
+
+#inside_lhs_cartDiv {
+     border-top: 0.3px solid;
+     display: flex;
+     width: 100%;
+     padding-top: 10px;
+}
+
+#inside_lhs_cartDiv h2 {
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: 0.6px;
+     font-size: 17px;
+}
+
+#inside_lhs_cartDiv p {
+     font-size: 13px;
+     font-family: Avenir-Next, sans-serif;
+     font-weight: 400;
+     letter-spacing: 0.6px;
+}
+
+#data_inside_lhs_cartDiv {
+     display: flex;
+     width: 55%;
+}
+
+#details_inside_lhs_cartDiv {
+     width: 55%;
+}
+
+#delivery_lhs_cartDiv {
+     display: flex;
+}
+
+#delivery_lhs_cartDiv button {
+     display: none;
+}
+
+#goToBag_Pr {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     margin-top: 10px;
+}
+
+#goToBag_Pr button {
+     width: 100%;
+     text-decoration: none;
+     border-right: 1px;
+     border-left: 1px;
+     background-color: white;
+     font-size: 13px;
+     font-family: Avenir-Next, sans-serif;
+     font-weight: 400;
+     letter-spacing: 0.6px;
+     color: black;
+}
+
+#goToBag_Pr button :hover {
+     color: #f39;
+}
+
+
+.fav-item-last {
+     padding-top: 30px;
+     width: 40%;
+     height: 100%;
+     /* border: 1px solid red; */
+     display: flex;
+     justify-content: space-between;
+}
+
+.fav-item-last .product-price {
+     white-space: nowrap;
+     padding-right: 20px;
+}
+
+.fav-item-last>div:first-child {
+     width: 100%;
+     height: fit-content;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+}
+
+.fav-item-last span {
+     font-size: 1.5rem;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+     opacity: .7;
+     margin-right: 5px;
+}
+
+.fav-item-last select {
+     width: 40px;
+     height: 30px;
+}
+
+#rhs_div {
+     width: 30%;
+     display: flex;
+     flex-direction: column;
+}
+
+#promo_code {
+     display: flex;
+     text-align: center;
+     width: 100%;
+     font-size: 20px;
+     margin-top: 1rem;
+     margin-bottom: 2rem;
+     padding: 15px 0;
+     background-color: #F2F2F2;
+     justify-content: center;
+     align-items: center;
+}
+
+#promo_code:hover {
+     color: #f39;
+     cursor: pointer;
+}
+
+#promoCode {
+     width: 25px;
+     margin-right: 5px;
+}
+
+#total_div {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+}
+
+#item_details {
+     width: 100%;
+     margin: auto;
+     display: flex;
+     padding: 30px 0;
+     font-size: 17px;
+     font-family: Avenir-Next, sans-serif;
+     flex-direction: column;
+     background-color: #F2F2F2;
+}
+
+#item_details>div {
+     width: 80%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+
+#overview {
+     width: 80%;
+     margin: auto;
+     font-size: 1.1rem;
+}
+
+#item_details>div {
+     width: 80%;
+     margin: auto;
+     margin-top: 10px;
+}
+
+#discount {
+     color: #f39;
+}
+
+#total span {
+     font-weight: 700;
+     font-size: 1.3rem;
+
+}
+
+#line {
+     margin: auto;
+     width: 75%;
+     height: 2px;
+     background: black;
+}
+
+#total_div>button {
+     padding: 15px;
+     font-size: 1.2rem;
+     margin-top: 1rem;
+}
+
+* {
+     --text: #f39
+}
+
+.checkout {
+     background-color: var(--text);
+     color: white;
+     font-size: 15px;
+     font-weight: 600;
+     border: 0px;
+     cursor: pointer;
+}
+
+.shop_more {
+     font-size: 15px;
+     background-color: white;
+     font-weight: 800;
+     cursor: pointer;
+}
+
+.shop_more:hover {
+     color: #f39;
+     border-color: #f39;
+     transition: 200ms;
+}
+
+#bank_discount {
+     margin-top: 1rem;
+}
+
+#totalBillSection {
+     display: flex;
+     width: 100%;
+     height: auto;
+}
+
+#totalBillSection>div {
+     display: flex;
+}
+
+#totalBillSection_img {
+     width: 4%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     margin-right: 10px;
+}
+
+#totalBillSection img {
+     width: 100%;
+
+}
+
+#totalBillSection h3 {
+     font-weight: bold;
+}
+
+#payableSection_Pr {
+     display: flex;
+     border-bottom: 1px solid;
+}
+
+#payableSectionImg_Pr {
+     width: 4%;
+     margin-right: 10px;
+     display: flex;
+     justify-content: center;
+
+     align-items: center;
+}
+
+#payableSection_Pr img {
+
+     width: 100%;
+}
+
+#payableSection_Pr h3 {
+     font-weight: bold;
+}
+
+#payableSectionH_Pr {
+     width: 100%;
+}
+
+.justFlexIt {
+     display: flex;
+
+}
+
+.justFlexIt div {
+     width: 5%;
+     display: flex;
+     align-items: center;
+     margin-right: 15px;
+}
+
+.justFlexIt p {
+     font-size: 17px;
+     font-weight: bold;
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: .3px;
+}
+
+.justFlexIt button {
+     width: 100%;
+     cursor: pointer;
+}
+
+.justFlexIt div+div {
+     width: 100%;
+}
+
+#makeItRed {
+     color: red;
+}
+
+#cardPayment {
+     width: 90%;
+     margin: auto;
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: .3px;
+     display: none;
+}
+
+#popularbanks {
+     width: 90%;
+     margin: auto;
+     display: none;
+}
+
+#otherWallets {
+     width: 90%;
+     margin: auto;
+     display: none;
+}
+
+#UPIpayment {
+     width: 90%;
+     margin: auto;
+}
+
+#cardPayment p {
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: .3px;
+     font-size: 14px;
+     font-weight: 400;
+}
+
+#cardPayment input {
+     width: 40%;
+     padding: 10px;
+     border: 2px solid #82cee4;
+}
+
+#CVV {
+     width: 20%;
+     display: flex;
+     gap: 10px;
+     margin-top: 20px;
+}
+
+#popularbanks p {
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: .3px;
+     font-size: 14px;
+     font-weight: 400;
+}
+
+#popularbanks_button {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+}
+
+#popularbanks button {
+     width: 80%;
+     padding: 10px;
+     padding-top: 20px;
+     margin: auto;
+     border-radius: 10px;
+     cursor: pointer;
+     margin-bottom: 15px;
+     background-color: white;
+}
+
+
+#otherWallets p {
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: .3px;
+     font-size: 14px;
+     font-weight: 400;
+}
+
+#otherWallets_button {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+}
+
+#otherWallets button {
+     width: 80%;
+     padding: 10px;
+     padding-top: 20px;
+     margin: auto;
+     border-radius: 10px;
+     cursor: pointer;
+     margin-bottom: 15px;
+     background-color: white;
+}
+
+#selectBanks {
+     width: 40%;
+     padding: 10px;
+     border: 2px solid #82cee4;
+}
+
+#UPIpayment {
+     display: flex;
+     display: none;
+}
+
+
+#UPIpayment p {
+     font-family: Avenir-Next, sans-serif;
+     letter-spacing: .3px;
+     font-size: 14px;
+     font-weight: 400;
+}
+
+#makeCardP1None {
+     color: red;
+     display: none;
+}
+
+#makeCardP2None {
+     color: red;
+     display: none;
+}
+
+.changeInBTN {
+     background-color: white;
+     border: 0px;
+     font-size: 15px;
+}

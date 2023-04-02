@@ -41,6 +41,11 @@ public class Planter {
 	@JoinColumn(name = "plantId")
 	private Plant plant;
 
+	@OneToOne(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+	@JsonIgnore
+	@JoinColumn(name = "orderId")
+	private Orders order;
+	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
 	@JoinColumn(name = "seedId")
