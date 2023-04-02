@@ -1,54 +1,29 @@
-let domain = "http://localhost:8088";
 
-document.querySelector("form").addEventListener("submit", () => {
-  login(event);
-});
+let btn=document.getElementById("btn")
+btn.onclick=()=>{
+    LogIn();
+}
 
-function login(e) {
-  e.preventDefault();
-
-  let myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  let adminMobileNumber = document.getElementById("mobile").value;
-  let adminPassword = document.getElementById("password").value;
-
-  let raw = JSON.stringify({
-    adminMobileNumber: adminMobileNumber,
-    adminPassword: adminPassword,
-  });
-
-  let requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
-
-  fetch(`${domain}/admin/login`, { mode: "no-cors" }, requestOptions)
-    .then((response) => {
-      if (response.status == 200) {
-        response.text().then((res) => {
-          localStorage.setItem("uuid", res);
-
-          window.location.href = "index.html";
-        });
-      } else {
-        if (
-          window.confirm(
-            "Unnable to Login " +
-              "/n" +
-              "Press OK to Register to OPN application"
-          )
-        ) {
-          window.location.href = "signup.html";
+let LogIn=async()=>{
+    try{
+        let custdata={
+            customerMobileNumber:document.querySelector(".mobile-number").value,
+            customerPassword:document.querySelector(".password").value
         }
-      }
-    })
-    .catch((error) => {
-      // if (window.confirm("Unnable to Login " +"/n"+"Press OK to Register to OPN application"+"/n"+`Error:${error}`)) {
-      //   window.location.href = "signup.html";
-      // }
-      // console.log(error);
-    });
+        let res=await fetch(`http://localhost:8088/customer/login`,{
+            method:'POST',
+            body:JSON.stringify(custdata),
+            headers:{
+                'Content-Type':'application/json'
+            }
+           
+        })
+
+       // let data=await res.json()
+        console.log(res.headers)
+        
+
+    }catch(error){
+        console.log("error:",error)
+    }
 }
