@@ -1,4 +1,9 @@
-<h1>Online Plant Nursery Application</h1>
+<h1 align="center">Online Plant Nursery Application</h1>
+<div align="center">
+<img src="https://user-images.githubusercontent.com/110565344/229363962-6825d075-afd1-4dcf-b325-a5a47c7b4f30.png"/>
+</div>
+
+
 
 Domain Description:
 An online nursery application is a platform that provides an online marketplace for buying plants and gardening supplies. It enables users to purchase a wide variety of plants, seeds, planter, and accessories for gardening from the convenience of their own home.
