@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Order</title>
+    <link rel="stylesheet" href="common.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a 
+        href="#"
+        class="navbar-brand mb-0 h6 text-success"> 
+        <img class="d-inline-block align top"
+        src="https://user-images.githubusercontent.com/87129673/229336907-dd5e4aea-56bd-494d-a7fe-4578c8c093d9.png" width="40" height="40" alt=""> 
+        
+        Plant nursary
+         </a>
+         <button
+         type="button"
+         data-bs-toggle="collapse"
+         data-bs-target="#navbarNav"
+          class="navbar-toggler"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          >
+          <span class="navbar-toggler-icon"></span>
+    
+         </button>
+         <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav ">
+                <li class="nav-item active">
+                    <a href="index.htl" class="nav-link active">
+                        <h6 class="text-success">Home</h6>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="order.html" class="nav-link active">
+                        <h6 class="text-success">CRUD Order</h6>
+                    </a>
+                </li>
+                <li class="nav-item active ">
+                    <a href="plant.html" class="nav-link active">
+                        <h6 class="text-success">CRUD Plant</h6>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="planter.html" class="nav-link active">
+                        <h6 class="text-success">CRUD PLANTER</h6> 
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="seed.html" class="nav-link active">
+                        <h6 class="text-success">CRUD SEED</h6>
+                    </a>
+                </li>
+              
+            </ul>
+         </div>
+        </nav>
+
+    <div id="parent">
+        <div id="post">
+          <section class="container">
+            <header>Add Order</header>
+            <form action="" class="form">
+                <div class="input-box">
+                    <label for="">Enter Customer Login key</label>
+                    <input type="text" id="key" placeholder="Enter key"><br>
+                </div>
+                <div class="input-box">
+                    <label for="">Enter Planter Id</label>
+                    <input type="number" id="pid" placeholder="Enter Id "><br>
+                </div>
+                <div class="input-box">
+                    <label for="">Enter Customer Id</label>
+                    <input type="number" id="cust" placeholder="Enter Id "><br>
+                </div>
+                <div class="input-box">
+                    <label for="">Enter Transiction mode</label>
+                    <input type="text" id="trans" placeholder="Enter Transiction Mode"><br>
+                </div>
+                <div class="input-box">
+                    <label for="">Enter Quantity of order </label>
+                    <input type="number" id="qty" placeholder="Enter Quantity"><br>
+                </div>
+                <div class="input-box">
+                    <label for="">Enter Cost of Order</label>
+                    <input type="number" id="cost" placeholder="in double"><br>
+                </div>
+                <button id="btn">Add Order</button>
+            </form>
+          </section>
+    
+        </div>
+        <div id="delete">
+             <input type="text" id="keys" placeholder="Enter Customer login key"><br>
+           <input type="number" id="oids" placeholder="Enter orderId to delete Order"><br>
+           <input type="number" id="cids" placeholder="Enter cutomerId to delete Order"><br>
+            <button id="dbtn">Delete Order</button> 
+        </div>
+    
+    
+        <div id="patch">
+            <input type="text" id="pkey" placeholder="Enter Customer login key"><br>
+            <input type="number" id="poid" placeholder="Enter  orderId "><br>
+            <input type="text" id="ptrans" placeholder="Enter Transiction Mode"><br>
+            <input type="number" id="pqty" placeholder="Enter Quantity"><br>
+            <input type="number" id="pcost" placeholder="Enter Total cost in double"><br>
+            <button id="ubtn"> Update Order</button>
+    
+        </div>
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+<script >
+    let btn=document.getElementById("btn")
+btn.onclick=()=>{
+    regData()
+}
+
+async function regData(){
+    try{
+        let register_data={
+            transcationMode:document.getElementById("trans").value,
+            quantity:document.getElementById("qty").value,
+            totalCost:document.getElementById("cost").value
+            
+        }
+        let planterId=document.getElementById("pid").value
+        let customerId=document.getElementById("cust").value
+        let key=document.getElementById("key").value
+        let res=await fetch(`http://localhost:8088/orders/add?planterId=${planterId}&customerId=${customerId}&key=${key}`,{
+            method:'POST',
+            body:JSON.stringify(register_data),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        let data=await res.json();
+        console.log("data",data)
+        let status=await res.status;
+        console.log("Status",status)
+      
+
+    }catch(error){
+        console.log("error ",error)
+    }
+}
+
+let dbtn=document.getElementById("dbtn")
+dbtn.onclick=()=>{
+    deleteOrder();
+}
+   
+
+let deleteOrder=async()=>{
+    try{
+        let orderId=document.getElementById("oids").value
+        let cid=document.getElementById("cids").value
+        let key=document.getElementById("keys").value
+        let res=await fetch(`http://localhost:8088/orders/delete/${orderId}?cid=${cid}&key=${key}`,{
+            method:'DELETE',            
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        let data=await res.json();
+        console.log("data",data)
+        let status=await res.status;
+        console.log("Status",status)
+        
+            alert("Order deleted")
+        
+
+    }catch(error){
+        console.log("error ",error)
+
+    }
+}
+
+let ubtn1=document.getElementById("ubtn")
+ubtn1.onclick=()=>{
+    updateOrder();
+}
+
+let updateOrder=async()=>{
+    try{
+         let send_data={
+            orderId:document.getElementById("poids").value,
+            transcationMode:document.getElementById("ptrans").value,
+            quantity:document.getElementById("pqty").value,
+            totalCost:document.getElementById("pcost").value
+         }
+      
+       
+        let key=document.getElementById("pkeys").value
+        let res=await fetch(`http://localhost:8088/orders/update?key=${key}`,{
+            method:'PUT', 
+            body:stringify(send_data),           
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        let data=await res.json();
+        console.log("data",data)
+        let status=await res.status;
+        console.log("Status",status)
+        
+            alert("Order Updated")
+        
+
+    }catch(error){
+        console.log("error ",error)
+
+    }
+}
+
+
+
+
+
+
+</script>

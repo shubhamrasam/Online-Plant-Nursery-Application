@@ -552,12 +552,12 @@ public class Data {
 		Integer  capacity10=32;
 
 		Planter planter1=new Planter(pheight1,capacity1,holes1,"red","round",stock1,cost1,"url1");
-		Planter planter2=new Planter(pheight2,capacity1,holes2,"green","round",stock2,cost2,"url2");
+		Planter planter2=new Planter(pheight2,capacity1,holes2,"green","trangle",stock2,cost2,"url2");
 		Planter planter3=new Planter(pheight3,capacity2,holes3,"red","round",stock3,cost3,"url3");
 		Planter planter4=new Planter(pheight4,capacity3,holes4,"red","round",stock4,cost4,"url4");
 		Planter planter5=new Planter(pheight5,capacity4,holes5,"red","round",stock5,cost5,"url5");
 		Planter planter6=new Planter(pheight6,capacity5,holes6,"red","round",stock6,cost6,"url6");
-		Planter planter7=new Planter(pheight7,capacity6,holes7,"red","round",stock7,cost7,"url7");
+		Planter planter7=new Planter(pheight7,capacity6,holes7,"red","trangle",stock7,cost7,"url7");
 		Planter planter8=new Planter(pheight8,capacity7,holes8,"red","round",stock8,cost8,"url8");
 		Planter planter9=new Planter(pheight9,capacity8,holes9,"red","round",stock9,cost9,"url9");
 		Planter planter10=new Planter(pheight10,capacity9,holes10,"red","round",stock10,cost10,"url10");
