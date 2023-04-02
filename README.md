@@ -75,3 +75,5 @@ There are 2 users in the system:
 
 <h1>Flow Chart-Diagram</h1>
 
+<img src="https://user-images.githubusercontent.com/87129673/229362862-f0e6e01a-2a66-400b-b41a-f8b88e0376e8.JPG" alt="">
+
