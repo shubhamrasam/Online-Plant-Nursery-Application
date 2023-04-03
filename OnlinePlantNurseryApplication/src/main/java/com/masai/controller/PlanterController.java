@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +26,13 @@ public class PlanterController {
     
 	@Autowired
 	PlanterService planterservice;
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/planters/add")
 	 public ResponseEntity<Planter> addPlanter(@RequestBody Planter planter,@RequestParam(name="plantId",required = false) Integer plantId,@RequestParam(name="seedId",required = false) Integer seedId,@RequestParam(name="key") String key) {
 		 Planter planter1 = planterservice.addPlanter(planter,plantId,seedId,key);
 		 return new ResponseEntity<>(planter1,HttpStatus.OK);
 	 }
-	 
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/planters/update")
 	 public ResponseEntity<Planter> updatePlanter(@RequestBody Planter planter,@RequestParam(name="key") String key) {
 		 Planter planter1 = planterservice.updatePlanter(planter,key);

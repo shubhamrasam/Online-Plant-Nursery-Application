@@ -3,6 +3,7 @@ package com.masai.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ import jakarta.validation.Valid;
 public class AdminController {
 	@Autowired
 	private AdminService adminservice;
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<Admin> saveAdminHandler(@Valid @RequestBody Admin admin){
 		return new ResponseEntity<>(adminservice.addAdmin(admin),HttpStatus.OK);

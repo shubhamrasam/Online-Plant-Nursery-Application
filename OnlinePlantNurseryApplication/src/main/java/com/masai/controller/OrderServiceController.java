@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +26,13 @@ import com.masai.service.OrdersService;
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("/orders")
+@PreAuthorize("hasRole('ADMIN')")
 public class OrderServiceController {
 
 	@Autowired
 	private OrdersService ordersService;
 
-
+	@PreAuthorize("hasRole('NORMAL')")
 	@PostMapping("/add")
 	public ResponseEntity<Orders> addOrder(@RequestBody Orders order,@RequestParam(name="planterId") Integer planterId,@RequestParam(name="customerId") Integer customerId, @RequestParam(name="key") String key) throws OrderException, LoginException{
 		
@@ -38,7 +40,7 @@ public class OrderServiceController {
 		
 		return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
 	}
-
+	@PreAuthorize("hasRole('NORMAL')")
 	@PatchMapping("/update")
 	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order,@RequestParam(name="key") String key) throws OrderException, LoginException{
 		
@@ -47,7 +49,7 @@ public class OrderServiceController {
 		
 		return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
 	}
-
+    
 	@DeleteMapping("/delete/{orderId}")
 	public ResponseEntity<Orders> deleteOrder(@PathVariable Integer orderId,@RequestParam(name="cid") Integer customerId,@RequestParam(name="key") String key) throws OrderException, LoginException,CustomerException{
 		

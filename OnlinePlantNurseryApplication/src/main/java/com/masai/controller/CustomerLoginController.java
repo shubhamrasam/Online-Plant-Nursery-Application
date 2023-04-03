@@ -19,12 +19,12 @@ import com.masai.service.CustomerLoginService;
 public class CustomerLoginController {
 	@Autowired
 	private CustomerLoginService loginService;
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('NORMAL')")
 	@PostMapping("/login")
 	public ResponseEntity<String> logInHandler(@RequestBody CustomerLoginDTO dto) {
 		return new ResponseEntity<>(loginService.logIntoAccount(dto),HttpStatus.ACCEPTED);
 	}
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('NORMAL')")
 	@PostMapping("/logout")
 	public ResponseEntity<String> logoutInHandler(@RequestParam(required = false) String key) {
 		return new ResponseEntity<>(loginService.logOutAccount(key),HttpStatus.OK);
