@@ -73,6 +73,7 @@ There are 2 users in the system:
 <h1>Api Root EndPoints</h1>
 <p>http://localhost:8088/</p>
 <p>http://localhost:8088/swagger-ui/index.html</p>
+<h3>Please  note that here we have use spring security for aceess put user=admin and password=root@123 and for customer use user=customer and password=root</3>
 
 <h1>ERR daigram</h1>
 
