@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,13 +31,13 @@ public class SeedServiceController {
 	@Autowired
 	private SeedService seedService;
 
-
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/add")
 	public ResponseEntity<Seed> addSeed(@RequestBody Seed seed,@RequestParam(name="key") String key){
 		Seed savedSeed = seedService.addSeed(seed, key);
 		return new ResponseEntity<>(savedSeed, HttpStatus.CREATED);
 	}
-
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update")
 	public ResponseEntity<Seed> updateSeed(@RequestBody Seed seed,@RequestParam(name="key") String key) {
 		Seed updatedSeed = seedService.updateSeed(seed, key);
