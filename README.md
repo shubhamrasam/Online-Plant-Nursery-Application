@@ -60,7 +60,7 @@ There are 2 users in the system:
 <p>4. Deepak Kumar<p/>
 
 <h1>Installation And Run</h1>
-<p>Before Running The Api Server You Should  Update the database config Inside The Application.properies file</p>
+<p>Before Running The Api Server You Should  Update the database config Inside The Application.properties file</p>
 <p>Update The port ni,username and password</p>
 <p>server.port=8088</p>
 
